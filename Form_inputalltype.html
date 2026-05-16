@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete HTML Form</title>
+</head>
+
+<body>
+
+    <form 
+        action="/submit"
+        method="POST"
+        enctype="multipart/form-data"
+        autocomplete="on"
+        novalidate
+        target="_blank"
+    >
+
+        <h1>Complete HTML Form</h1>
+
+        <!-- ================= TEXT INPUTS ================= -->
+
+        <fieldset>
+            <legend>Text Inputs</legend>
+
+            <!-- text -->
+            <label for="name">Full Name:</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+                minlength="3"
+                maxlength="20"
+                autofocus
+                autocomplete="name"
+                
+                value="Ujjawal"
+            >
+            <br><br>
+
+            <!-- email -->
+            <label for="email">Email:</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="example@gmail.com"
+                required
+                autocomplete="email"
+            >
+            <br><br>
+
+            <!-- password -->
+            <label for="password">Password:</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                minlength="6"
+                maxlength="12"
+                required
+            >
+            <br><br>
+
+            <!-- search -->
+            <label for="search">Search:</label>
+            <input
+                type="search"
+                id="search"
+                name="search"
+                placeholder="Search here"
+            >
+            <br><br>
+
+            <!-- tel -->
+            <label for="phone">Phone:</label>
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                pattern="[0-9]{10}"
+                placeholder="9876543210"
+            >
+            <br><br>
+
+            <!-- url -->
+            <label for="website">Website:</label>
+            <input
+                type="url"
+                id="website"
+                name="website"
+                placeholder="https://example.com"
+            >
+            <br><br>
+
+        </fieldset>
+
+        <!-- ================= NUMBER INPUTS ================= -->
+
+        <fieldset>
+            <legend>Number Inputs</legend>
+
+            <!-- number -->
+            <label for="age">Age:</label>
+            <input
+                type="number"
+                id="age"
+                name="age"
+                min="18"
+                max="60"
+                step="1"
+                value="18"
+            >
+            <br><br>
+
+            <!-- range -->
+            <label for="volume">Volume:</label>
+            <input
+                type="range"
+                id="volume"
+                name="volume"
+                min="0"
+                max="100"
+                value="50"
+            >
+            <br><br>
+
+        </fieldset>
+
+        <!-- ================= DATE INPUTS ================= -->
+
+        <fieldset>
+            <legend>Date & Time Inputs</legend>
+
+            <!-- date -->
+            <label for="dob">Date:</label>
+            <input
+                type="date"
+                id="dob"
+                name="dob"
+            >
+            <br><br>
+
+            <!-- time -->
+            <label for="time">Time:</label>
+            <input
+                type="time"
+                id="time"
+                name="time"
+            >
+            <br><br>
+
+            <!-- datetime-local -->
+            <label for="meeting">Date & Time:</label>
+            <input
+                type="datetime-local"
+                id="meeting"
+                name="meeting"
+            >
+            <br><br>
+
+            <!-- month -->
+            <label for="month">Month:</label>
+            <input
+                type="month"
+                id="month"
+                name="month"
+            >
+            <br><br>
+
+            <!-- week -->
+            <label for="week">Week:</label>
+            <input
+                type="week"
+                id="week"
+                name="week"
+            >
+            <br><br>
+
+        </fieldset>
+
+        <!-- ================= CHOICE INPUTS ================= -->
+
+        <fieldset>
+            <legend>Choice Inputs</legend>
+
+            <!-- radio -->
+            <p>Gender:</p>
+
+            <input
+                type="radio"
+                id="male"
+                name="gender"
+                value="male"
+            >
+            <label for="male">Male</label>
+
+            <input
+                type="radio"
+                id="female"
+                name="gender"
+                value="female"
+            >
+            <label for="female">Female</label>
+
+            <br><br>
+
+            <!-- checkbox -->
+            <p>Skills:</p>
+
+            <input
+                type="checkbox"
+                id="html"
+                name="skills"
+                value="HTML"
+                checked
+            >
+            <label for="html">HTML</label>
+
+            <input
+                type="checkbox"
+                id="css"
+                name="skills"
+                value="CSS"
+            >
+            <label for="css">CSS</label>
+
+            <input
+                type="checkbox"
+                id="js"
+                name="skills"
+                value="JavaScript"
+            >
+            <label for="js">JavaScript</label>
+
+            <br><br>
+
+            <!-- select -->
+            <label for="city">City:</label>
+
+            <select id="city" name="city">
+                <option value="">Select City</option>
+                <option value="delhi">Delhi</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="vadodara">Vadodara</option>
+            </select>
+
+            <br><br>
+
+            <!-- datalist -->
+            <label for="browser">Browser:</label>
+
+            <input list="browsers" id="browser" name="browser">
+
+            <datalist id="browsers">
+                <option value="Chrome">
+                <option value="Firefox">
+                <option value="Edge">
+                <option value="Safari">
+            </datalist>
+
+            <br><br>
+
+        </fieldset>
+
+        <!-- ================= FILE INPUTS ================= -->
+
+        <fieldset>
+            <legend>File & Color Inputs</legend>
+
+            <!-- file -->
+            <label for="resume">Upload File:</label>
+            <input
+                type="file"
+                id="resume"
+                name="resume"
+                multiple
+            >
+            <br><br>
+
+            <!-- color -->
+            <label for="color">Favorite Color:</label>
+            <input
+                type="color"
+                id="color"
+                name="color"
+            >
+            <br><br>
+
+        </fieldset>
+
+        <!-- ================= TEXTAREA ================= -->
+
+        <fieldset>
+            <legend>Textarea</legend>
+
+            <label for="message">Message:</label>
+            <br>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="5"
+                cols="40"
+                placeholder="Write something..."
+                disabled
+            ></textarea>
+
+        </fieldset>
+
+        <br>
+
+        <!-- hidden -->
+        <input
+            type="hidden"
+            name="userid"
+            value="12345"
+        >
+
+        <!-- buttons -->
+        <button type="submit">Submit</button>
+
+        <button type="reset">Reset</button>
+
+        <button type="button">Normal Button</button>
+
+    </form>
+
+</body>
+
+</html> 

@@ -1,0 +1,38 @@
+List (ol:Ordered list, ul:Unordered list, )
+Tables - Displaying data in rows and columns.
+form attributes
+input for=id
+input types
+name attributes
+required / disabled
+Button
+Semantic tags HTML5 - Page Structure Visual
+Why Semantic tags html matters.
+Semantic HTML- Writing HTML that means something.
+
+Media Elements- Video, Audio & iFrames.
+==<video controls autoplay muted loop width="340">==
+
+Meta Tags & Head Elements.
+---charset UTF-8 ---> 
+---viewport meta --->
+---description meta --->
+---Open Graph (og:) --->
+---favicon --->
+---title ---> 
+
+div, span, Comments & HTML Entities.
+---<div>--Block Container.
+---<span>--Inline Container.
+---Block vs Inline:
+---HTML Entities:
+---Ctrl+/ in VS Code:
+
+Buttons, Script & Style Tags.
+---button type=
+---disabled attribute:
+---Script 
+
+Request Response Model.
+
+Explain Git--

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        text {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+        }
+        input, select {
+            margin-bottom: 10px;
+        }
+    </style>
+    <h1>Student Details</h1><span style="color: red;">*All fields are mandatory</span><br><br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address"><br><br>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob"><br><br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age"><br><br>
+    <label for="gender">Gender:</label>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br><br>
+
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone"><br><br>
+    <label for="file">Upload File:</label>
+    <input type="file" id="file" name="file"><br><br>
+    <label for="skills">Skills:</label><br>
+    <input type="checkbox" id="Python" name="skills">
+    <label for="Python">Python</label><br>
+    <input type="checkbox" id="JavaScript" name="skills">
+    <label for="JavaScript">JavaScript</label><br>
+    <input type="checkbox" id="Java" name="skills">
+    <label for="Java">Java</label><br><br>
+
+    <label for="department">Department:</label>
+    <select id="department" name="department">
+        <option value="it">IT</option>
+        <option value="cse">CSE</option>
+        <option value="eee">EEE</option>
+        <option value="mech">MECH</option>
+    </select><br><br>
+    <input type="submit" value="Submit"><br><br>
+</body>
+</html>
