@@ -36,3 +36,10 @@ Buttons, Script & Style Tags.
 Request Response Model.
 
 Explain Git--
+git status --> status check.
+git add . --> file add or staging 
+git status--> 
+git commit -m ""--> message dene .
+git push--> file push.
+git branch-->
+git checkout -b (branch name)-->
