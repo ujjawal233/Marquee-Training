@@ -43,3 +43,4 @@ git commit -m ""--> message dene .
 git push--> file push.
 git branch-->
 git checkout -b (branch name)-->
+git clone enter CLI.
