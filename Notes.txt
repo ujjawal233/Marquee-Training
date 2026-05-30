@@ -44,3 +44,26 @@ git push--> file push.
 git branch-->
 git checkout -b (branch name)-->
 git clone enter CLI.
+
+========Color======
+color code = 0 se 255;
+Primary color Red, Green , Blue (RGB)
+other all color is secondary color.
+Absolute --- PX
+relation --- %
+Position - static, relative   Absolute fixed  Sticky. 
+Variable Creation.
+Z-Index.
+Flex Box.-- Main Axis, Cross Axis, justify-content,
+
+========SEO==========
+
+
+========<CSS Grid>========
+
+CSS Grid<= CSS grid is a 2-dimensional layout system that lets you control rows and columns simultaneously- 
+the most powerful layout tool in css.
+
+2D Control-->Rows and Columns at once.
+Precise Placement-->Put items exactly where you want.
+Responsive-->Adapts to any screen size.
