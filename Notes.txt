@@ -67,3 +67,14 @@ the most powerful layout tool in css.
 2D Control-->Rows and Columns at once.
 Precise Placement-->Put items exactly where you want.
 Responsive-->Adapts to any screen size.
+Fixed px.
+repeat()
+fr units(fractional)
+Mixed units.
+Justify-items==Applied to Container
+align-items==Applied to Container
+place-items==Applied to Container
+justify-content==Applied to Container
+align-content.
+justify-self
+align-self
