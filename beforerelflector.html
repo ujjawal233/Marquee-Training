@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1::before{
+            content: "" ;
+            height: 20px;
+            width: 500px;
+            background-color: red;
+            display: block;
+        }
+        .box{
+            height: 100px;
+            width: 150px;
+            border: 1px solid black;
+            text-align: center;
+            transition: background-color 4s ease,
+            margin-left 4s ease,
+            border-radius 4s ease
+            ;
+            
+        
+        }
+        .box:hover{
+            background-color: blue;
+            margin-left: 50px;
+            border-radius: 20px;
+            transform: translateX(100px);
+            transform: scale(1.25), rotateX:('');
+
+
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Corona the most killer disese </h1>
+    <div class="box">
+        Click me
+
+    </div>
+    
+</body>
+</html>

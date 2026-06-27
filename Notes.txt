@@ -13,6 +13,9 @@ Semantic HTML- Writing HTML that means something.
 Media Elements- Video, Audio & iFrames.
 ==<video controls autoplay muted loop width="340">==
 
+CSS Selectors -- Targeting elements.
+Universal Selector.
+
 Meta Tags & Head Elements.
 ---charset UTF-8 ---> 
 ---viewport meta --->
@@ -78,3 +81,26 @@ justify-content==Applied to Container
 align-content.
 justify-self
 align-self
+Auto-fill.
+Auto-Fit. 
+
+========== Pseudo-Classes -- State-Based Styling =========
+hover--
+focus--
+active--
+visited--
+first-child--
+last-child--
+nth-child(n)--
+not(selector)--
+disabled--
+checked--
+
+========= Pseudo-Elements -- Virtual Selectors ==========
+
+========= CSS Transitions =========
+
+=========  JavaScript =============
+Introduction to JavaScript.
+Event-driven & single-threaded.
+ 
