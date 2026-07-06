@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuchh Bhi</title>
+</head>
+<body>
+    <h1> JavaScript </h1>
+    <Script>
+
+        //let arr = [3,5,7,1,3,4,5,8]
+
+        //console.log(arr.sort());
+        //console.log(arr.reverse()); 
+
+        /*let arr = [3,5,7,1,2]
+
+        let sum = arr.reduce((prev, curr) => {
+
+            return prev + curr;
+
+        },0)
+        console.log(sum);*/
+
+
+        //make a student object with the keys.
+        //name
+        //age
+        //a nested address object with city and pin code
+        //a nested introduce() that prints "Hi", I am Ujjawal.
+        //then
+        //prints all the keys,
+        //print all the values,
+        //print all the entries,
+        //make a copy using object.assign(),
+        //freeze the original object,
+        //and try changing the original student's name to see what happens.
+
+
+
+        let departments = [
+    { Dname: "IT", Dcode: 58 },
+    { Dname: "Finance", Dcode: 158 },
+    { Dname: "HR", Dcode: 48 },
+    { Dname: "Marketing", Dcode: 44 },
+    { Dname: "CEO", Dcode: 2 }
+];
+
+// "rohan" -- "sandeep" "aakash"
+
+let employees = [
+{
+    employee_id: "EMP101",
+    name: "rohan",
+    salary: 5000,
+    age: 14,
+    country: "london",
+    department: 158,
+    interests: [
+        { vlogs: ["daily_vlogs"] },
+        { learning: ["science"] },
+        { creativity: ["art"] },
+        { self_growth: ["motivational"] }
+    ],
+    junior_assigned: ["JEMP201","JEMP202"],
+    products_in_cart: [
+        { Pname: "Shirt", cost: 500 },
+        { Pname: "Headphones", cost: 1800 }
+    ]
+},
+{
+    employee_id: "EMP102",
+    name: "bhupendr",
+    salary: 7000,
+    age: 50,
+    country: "india",
+    department: 58,
+    interests: [
+        { food: ["food"] },
+        { vlogs: ["travel_vlogs"] },
+        { creativity: ["art"] },
+        { storytelling: ["storytelling"] }
+    ],
+    junior_assigned: ["JEMP203"],
+    products_in_cart: [
+        { Pname: "Shirt", cost: 500 },
+        { Pname: "Shoes", cost: 2500 },
+        { Pname: "Watch", cost: 3500 }
+    ]
+},
+{
+    employee_id: "EMP103",
+    name: "kartik",
+    salary: 300,
+    age: 2,
+    country: "america",
+    department: 48,
+    interests: [
+        { sports: ["sports"] },
+        { news: ["politics"] },
+        { gaming: ["online_gaming"] },
+        { learning: ["science"] }
+    ],
+    junior_assigned: ["JEMP204","JEMP205"],
+    products_in_cart: [
+        { Pname: "Football", cost: 1200 },
+        { Pname: "Shoes", cost: 2500 }
+    ]
+},
+{
+    employee_id: "EMP104",
+    name: "suraj",
+    salary: 200,
+    age: 19,
+    country: "russia",
+    department: 158,
+    interests: [
+        { vlogs: ["travel_vlogs"] },
+        { vehicles: ["bike"] },
+        { news: ["politics"] },
+        { food: ["food"] }
+    ],
+    junior_assigned: ["JEMP206"],
+    products_in_cart: [
+        { Pname: "Bike Helmet", cost: 2200 },
+        { Pname: "Watch", cost: 3500 }
+    ]
+},
+{
+    employee_id: "EMP105",
+    name: "aryan",
+    salary: 100,
+    age: 70,
+    country: "japan",
+    department: 48,
+    interests: [
+        { history: ["history"] },
+        { self_growth: ["motivational"] },
+        { news: ["news"] },
+        { learning: ["science"] }
+    ],
+    junior_assigned: ["JEMP207","JEMP208","JEMP209"],
+    products_in_cart: [
+        { Pname: "Books", cost: 900 },
+        { Pname: "Laptop", cost: 65000 }
+    ]
+},
+{
+    employee_id: "EMP106",
+    name: "aryan",
+    salary: 8800,
+    age: 40,
+    country: "japan",
+    department: 58,
+    interests: [
+        { coding: ["coding"] },
+        { technology: ["technology"] },
+        { learning: ["science"] },
+        { creativity: ["art"] }
+    ],
+    junior_assigned: ["JEMP210"],
+    products_in_cart: [
+        { Pname: "Laptop", cost: 65000 },
+        { Pname: "Mouse", cost: 700 },
+        { Pname: "Keyboard", cost: 1500 }
+    ]
+},
+{
+    employee_id: "EMP107",
+    name: "jatin",
+    salary: 10000,
+    age: 12,
+    country: "russia",
+    department: 48,
+    interests: [
+        { gaming: ["gaming","online_gaming"] },
+        { sports: ["sports"] },
+        { anime: ["anime"] }
+    ],
+    junior_assigned: ["JEMP211","JEMP212"],
+    products_in_cart: [
+        { Pname: "Gaming Mouse", cost: 2200 },
+        { Pname: "Headphones", cost: 1800 }
+    ]
+},
+{
+    employee_id: "EMP108",
+    name: "aaditya",
+    salary: 2000,
+    age: 19,
+    country: "india",
+    department: 44,
+    interests: [
+        { business: ["marketing","business"] },
+        { self_growth: ["motivational"] },
+        { storytelling: ["storytelling"] }
+    ],
+    junior_assigned: ["JEMP213"],
+    products_in_cart: [
+        { Pname: "Notebook", cost: 150 },
+        { Pname: "Pen", cost: 50 },
+        { Pname: "Shirt", cost: 500 }
+    ]
+},
+{
+    employee_id: "EMP109",
+    name: "sachi",
+    salary: 100,
+    age: 2,
+    country: "uganda",
+    department: 158,
+    interests: [
+        { fun: ["cartoons"] },
+        { food: ["food"] },
+        { learning: ["science"] },
+        { vlogs: ["daily_vlogs"] }
+    ],
+    junior_assigned: ["JEMP214"],
+    products_in_cart: [
+        { Pname: "Chocolate", cost: 100 },
+        { Pname: "Books", cost: 900 }
+    ]
+},
+{
+    employee_id: "EMP110",
+    name: "khushi",
+    salary: 3500,
+    age: 99,
+    country: "brazil",
+    department: 58,
+    interests: [
+        { vlogs: ["travel_vlogs"] },
+        { dance: ["dance"] },
+        { food: ["food"] },
+        { creativity: ["art"] }
+    ],
+    junior_assigned: ["JEMP215","JEMP216"],
+    products_in_cart: [
+        { Pname: "Dress", cost: 1800 },
+        { Pname: "Watch", cost: 3500 },
+        { Pname: "Shoes", cost: 2500 }
+    ]
+},
+{
+    employee_id: "EMP111",
+    name: "parul",
+    salary: 50000,
+    age: 34,
+    country: "jamaica",
+    department: 2,
+    interests: [
+        { leadership: ["leadership"] },
+        { business: ["business"] },
+        { technology: ["technology"] },
+        { self_growth: ["motivational"] }
+    ],
+    junior_assigned: ["JEMP217","JEMP218","JEMP219"],
+    products_in_cart: [
+        { Pname: "Laptop", cost: 65000 },
+        { Pname: "Watch", cost: 3500 },
+        { Pname: "Phone", cost: 45000 }
+    ]
+}];
+
+let junior_employees = [
+{
+    employee_id:"JEMP201",
+    name:"rahul",
+    salary:1800,
+    age:21,
+    country:"india",
+    department:158,
+    interests:[{vlogs:["travel_vlogs"]},{learning:["science"]}],
+    products_in_cart:[{Pname:"Bag",cost:900}]
+},
+{
+    employee_id:"JEMP202",
+    name:"neha",
+    salary:2000,
+    age:22,
+    country:"india",
+    department:158,
+    interests:[{food:["food"]},{creativity:["art"]}],
+    products_in_cart:[{Pname:"Shoes",cost:1500}]
+},
+{
+    employee_id:"JEMP203",
+    name:"aman",
+    salary:2200,
+    age:24,
+    country:"india",
+    department:58,
+    interests:[{coding:["coding"]},{technology:["technology"]}],
+    products_in_cart:[{Pname:"Keyboard",cost:1200}]
+},
+{
+    employee_id:"JEMP204",
+    name:"riya",
+    salary:1700,
+    age:20,
+    country:"india",
+    department:48,
+    interests:[{gaming:["online_gaming"]}],
+    products_in_cart:[{Pname:"Football",cost:900}]
+},
+{
+    employee_id:"JEMP205",
+    name:"vivek",
+    salary:2100,
+    age:23,
+    country:"india",
+    department:48,
+    interests:[{sports:["sports"]}],
+    products_in_cart:[{Pname:"Shoes",cost:1800}]
+},
+{
+    employee_id:"JEMP206",
+    name:"karan",
+    salary:2300,
+    age:24,
+    country:"russia",
+    department:158,
+    interests:[{vehicles:["bike"]}],
+    products_in_cart:[{Pname:"Helmet",cost:1200}]
+},
+{
+    employee_id:"JEMP207",
+    name:"simran",
+    salary:2500,
+    age:22,
+    country:"japan",
+    department:48,
+    interests:[{history:["history"]}],
+    products_in_cart:[{Pname:"Books",cost:700}]
+},
+{
+    employee_id:"JEMP208",
+    name:"mohit",
+    salary:2400,
+    age:23,
+    country:"india",
+    department:48,
+    interests:[{learning:["science"]}],
+    products_in_cart:[{Pname:"Notebook",cost:150}]
+},
+{
+    employee_id:"JEMP209",
+    name:"anjali",
+    salary:2600,
+    age:22,
+    country:"india",
+    department:48,
+    interests:[{self_growth:["motivational"]}],
+    products_in_cart:[{Pname:"Watch",cost:2000}]
+},
+{
+    employee_id:"JEMP210",
+    name:"rohit",
+    salary:2800,
+    age:25,
+    country:"india",
+    department:58,
+    interests:[{coding:["coding"]}],
+    products_in_cart:[{Pname:"Mouse",cost:800}]
+},
+{
+    employee_id:"JEMP211",
+    name:"deep",
+    salary:1800,
+    age:21,
+    country:"india",
+    department:48,
+    interests:[{gaming:["gaming"]}],
+    products_in_cart:[{Pname:"Headphones",cost:1800}]
+},
+{
+    employee_id:"JEMP212",
+    name:"priya",
+    salary:1900,
+    age:21,
+    country:"india",
+    department:48,
+    interests:[{anime:["anime"]}],
+    products_in_cart:[{Pname:"Books",cost:500}]
+},
+{
+    employee_id:"JEMP213",
+    name:"harsh",
+    salary:2000,
+    age:23,
+    country:"india",
+    department:44,
+    interests:[{business:["marketing"]}],
+    products_in_cart:[{Pname:"Notebook",cost:200}]
+},
+{
+    employee_id:"JEMP214",
+    name:"isha",
+    salary:1700,
+    age:20,
+    country:"uganda",
+    department:158,
+    interests:[{fun:["cartoons"]}],
+    products_in_cart:[{Pname:"Chocolate",cost:100}]
+},
+{
+    employee_id:"JEMP215",
+    name:"nikhil",
+    salary:2100,
+    age:24,
+    country:"brazil",
+    department:58,
+    interests:[{dance:["dance"]}],
+    products_in_cart:[{Pname:"Shoes",cost:1700}]
+},
+{
+    employee_id:"JEMP216",
+    name:"megha",
+    salary:2200,
+    age:23,
+    country:"brazil",
+    department:58,
+    interests:[{food:["food"]}],
+    products_in_cart:[{Pname:"Dress",cost:1800}]
+},
+{
+    employee_id:"JEMP217",
+    name:"abhishek",
+    salary:3000,
+    age:26,
+    country:"jamaica",
+    department:2,
+    interests:[{leadership:["leadership"]}],
+    products_in_cart:[{Pname:"Laptop Bag",cost:2000}]
+},
+{
+    employee_id:"JEMP218",
+    name:"kiran",
+    salary:3200,
+    age:27,
+    country:"jamaica",
+    department:2,
+    interests:[{business:["business"]}],
+    products_in_cart:[{Pname:"Phone",cost:25000}]
+},
+{
+    employee_id:"JEMP219",
+    name:"sonia",
+    salary:3100,
+    age:25,
+    country:"jamaica",
+    department:2,
+    interests:[{technology:["technology"]}],
+    products_in_cart:[{Pname:"Watch",cost:3000}]
+}
+];
+
+let student = {
+    name: "Ujjawal",
+    age: 19,
+
+    address: {
+        city: "Siwan",
+        pincode: 841413
+    },
+
+    introduce() {
+        console.log(`Hi, I am ${this.name}`);
+    }
+};
+
+// Calling the method
+student.introduce();
+
+
+// Print all keys
+console.log("Keys:");
+console.log(Object.keys(student));
+
+
+// Print all values
+console.log("Values:");
+console.log(Object.values(student));
+
+
+// Print all entries
+console.log("Entries:");
+console.log(Object.entries(student));
+
+
+// Make a copy using Object.assign()
+let studentCopy = Object.assign({}, student);
+
+console.log("Copied Object:");
+console.log(studentCopy);
+
+
+// Freeze the original object
+Object.freeze(student);
+
+
+// Try changing the original student's name
+student.name = "Anuj";
+
+console.log("Original Student after change attempt:");
+console.log(student);
+
+console.log("Copied Student:");
+console.log(studentCopy);
+
+
+let itEmployeeNames = employees
+    .filter(emp => emp.department === 58)
+    .map(emp => emp.name);
+
+
+console.log(itEmployeeNames);
+
+employees.forEach(emp => {
+    console.log(emp.name);
+
+
+    emp.junior_assigned.forEach(juniorId => {
+        let junior = junior_employees.find(j => j.employee_id === juniorId);
+
+
+        if (junior) {
+            console.log("  - " + junior.name);
+        }
+    });
+
+
+    console.log("------------------");
+});
+
+let allProducts = [];
+
+employees
+    .filter(emp => emp.department === 58)
+    .forEach(emp => {
+        emp.junior_assigned.forEach(juniorId => {
+            let junior = junior_employees.find(j => j.employee_id === juniorId);
+
+            if (junior) {
+                allProducts.push(...junior.products_in_cart);
+            }
+        });
+    });
+
+let mostExpensive = allProducts.reduce((max, product) => {
+    return product.cost > max.cost ? product : max;
+});
+
+console.log(mostExpensive);
+
+
+
+
+const giftResults = employees.flatMap((employee) => {
+    return (employee.junior_assigned || []).map((juniorId) => {
+        const junior = junior_employees.find((j) => j.employee_id === juniorId);
+
+        if (!junior) return null;
+
+        const cheapestGift = junior.products_in_cart.reduce((cheapest, gift) => {
+            return gift.cost < cheapest.cost ? gift : cheapest;
+        }, junior.products_in_cart[0]);
+
+        return {
+            "Employee Name": employee.name,
+            "Junior Name": junior.name,
+            "Cheapest Gift": cheapestGift.Pname,
+            "Can Give Gift": employee.salary >= cheapestGift.cost
+        };
+    });
+}).filter(Boolean);
+
+console.log(giftResults);
+
+
+
+employees.forEach(employee => {
+
+    employee.junior_assigned.forEach(id => {
+
+        junior_employees.forEach(junior => {
+
+            if (junior.employee_id == id) {
+
+                let minCost = junior.products_in_cart[0].cost;
+
+                junior.products_in_cart.forEach(product => {
+                    if (product.cost < minCost) {
+                        minCost = product.cost;
+                    }
+                });
+
+                if (employee.salary >= minCost) {
+                    console.log(employee.name + " can give gift to " + junior.name);
+                } else {
+                    console.log(employee.name + " cannot give gift to " + junior.name);
+                }
+            }
+
+        });
+
+    });
+
+});
+
+
+
+let categories = [];
+
+employees.concat(junior_employees).forEach(employee => {
+
+    employee.interests.forEach(interest => {
+
+        for (let key in interest) {
+
+            if (categories.includes(key) == false) {
+                categories.push(key);
+            }
+
+        }
+
+    });
+
+});
+
+console.log(categories);
+
+
+
+
+
+employees.forEach(employee => {
+
+    let employeeTotal = 0;
+
+    employee.interests.forEach(interest => {
+
+        let key = Object.keys(interest)[0];
+        employeeTotal += categories.indexOf(key) * 1;
+
+    });
+
+    console.log("Employee: " + employee.name + " -> " + employeeTotal + "%");
+
+    employee.junior_assigned.forEach(id => {
+
+        junior_employees.forEach(junior => {
+
+            if (junior.employee_id == id) {
+
+                let juniorTotal = 0;
+
+                junior.interests.forEach(interest => {
+
+                    let key = Object.keys(interest)[0];
+                    juniorTotal += categories.indexOf(key) * 1;
+
+                });
+
+                console.log("   Junior: " + junior.name + " -> " + juniorTotal + "%");
+
+            }
+
+        });
+
+    });
+
+});
+
+console.log("-------------------------------");
+
+
+employees.forEach(employee => {
+
+    employee.junior_assigned.forEach(id => {
+
+        junior_employees.forEach(junior => {
+
+            if (junior.employee_id == id) {
+
+                let donation = (employee.name + junior.name).length;
+
+                console.log(
+                    "Senior: " + employee.name +
+                    " | Junior: " + junior.name +
+                    " | Donation: " + donation
+                );
+
+            }
+
+        });
+
+    });
+
+});
+
+
+console.log("-----------------------");
+
+
+
+
+        //let obj = {
+        //    name: Ujjawal,
+        //    age: 19,
+
+       // }
+        //console.log(obj);
+
+
+
+    </Script>
+</body>
+</html>

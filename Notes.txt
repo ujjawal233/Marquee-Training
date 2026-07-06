@@ -103,4 +103,7 @@ checked--
 =========  JavaScript =============
 Introduction to JavaScript.
 Event-driven & single-threaded.
- 
+Operator Statement.
+Conditional Statement.
+Scape Character.
+String methods.
