@@ -1,0 +1,1 @@
+Need specific task details to generate the requested code. Current repo includes multiple HTML/JS learning files (e.g., JavaScript/Index.html has employee/departments logic), but the user did not specify what exact code to provide.

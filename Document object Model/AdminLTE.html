@@ -1,53 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kuchh Bhi</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AdminLTE Dashboard Clone</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#1f242d;
+    color:white;
+}
+
+/* Navbar */
+.navbar{
+    height:60px;
+    background:#2c313c;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 20px;
+}
+
+.nav-left,
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+/* Main Layout */
+.container{
+    display:flex;
+    height:700px;
+    width: 1000px;
+}
+
+/* Sidebar */
+.sidebar{
+    width:300px;
+    background:#343a40;
+    padding:5px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:24px;
+    margin-bottom:20px;
+}
+
+.menu-item{
+    padding:5px;
+    border-radius:2px;
+    margin-bottom:10px;
+    background:#495057;
+    cursor:pointer;
+}
+
+.submenu{
+    padding:12px 5px;
+    color:#ddd;
+}
+
+/* Main Content */
+.main{
+    flex:1;
+    padding:5px;
+}
+
+.heading{
+    font-size:30px;
+    margin-bottom:20px;
+    justify-content: center;
+}
+
+/* Cards */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:5px;
+    margin-bottom:5px;
+}
+
+.card{
+    height:150px;
+    width: 300px;
+    border-radius:2px;
+    padding:5px;
+    position:relative;
+}
+
+.card h1{
+    font-size:48px;
+}
+
+.card p{
+    margin-top:10px;
+    font-size:20px;
+}
+
+.blue{
+    
+    background:#0d6efd;
+}
+
+.green{
+    background:#198754;
+}
+
+.yellow{
+    background:#ffc107;
+    color:black;
+}
+
+.red{
+    background:#dc3545;
+}
+
+.more{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    text-align:center;
+    padding:10px;
+    background:rgba(0,0,0,.15);
+}
+
+/* Chart & Map */
+.content{
+    display:grid;
+    grid-template-columns:2fr 1.4fr;
+    gap:5px;
+}
+
+.chart,
+.map{
+    background:#2c313c;
+    border-radius:2px;
+    padding:5px;
+}
+
+.chart{
+    height:50px;
+    
+
+}
+
+.map{
+    height:100px;
+}
+
+.chart-box{
+    height:500px;
+    border:2px dashed #555;
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#aaa;
+}
+
+.map-box{
+    height:500px;
+    border:2px dashed #555;
+    margin-top:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#aaa;
+}
+.table-container{
+    margin-top:30px;
+    background:#2c313c;
+    padding:20px;
+    border-radius:10px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    color:white;
+}
+
+th{
+    background:#0d6efd;
+}
+
+th,td{
+    padding:10px;
+    text-align:center;
+    border:1px solid gray;
+}
+
+tr:nth-child(even){
+    background:#3b4148;
+}
+</style>
 </head>
+
 <body>
-    <h1> JavaScript </h1>
-    <Script>
 
-        //let arr = [3,5,7,1,3,4,5,8]
+<!-- Navbar -->
+<div class="navbar">
+    <div class="nav-left">
+        <span>☰</span>
+        <span>Live Preview</span>
+        <span>Documentation</span>
+    </div>
 
-        //console.log(arr.sort());
-        //console.log(arr.reverse()); 
+    <div class="nav-right">
+        <span>🔍</span>
+        <span>💬</span>
+        <span>🔔</span>
+        <span>🌙</span>
+        <span> Alexander Pierce</span>
+    </div>
+</div>
 
-        /*let arr = [3,5,7,1,2]
+<div class="container">
 
-        let sum = arr.reduce((prev, curr) => {
+    <!-- Sidebar -->
+    <div class="sidebar">
 
-            return prev + curr;
+        <div class="logo">
+            <div>Ⓐ</div>
+            <div>AdminLTE 4</div>
+        </div>
 
-        },0)
-        console.log(sum);*/
+        <div class="menu-item">Dashboard</div>
+
+        <div class="submenu">○ Dashboard v1</div>
+        <div class="submenu">○ Dashboard v2</div>
+        <div class="submenu">○ Dashboard v3</div>
+
+        <div class="menu-item">Theme Generate</div>
+        <div class="menu-item">Widgets</div>
+        <div class="menu-item">Layout Options</div>
+        <div class="menu-item">UI Elements</div>
+        <div class="menu-item">Mailbox</div>
+        <div class="menu-item">Forms</div>
+        <div class="menu-item">Tables</div>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+
+        <div class="heading">Dashboard</div>
+
+        <!-- Cards -->
+        <div class="cards">
+
+            <div class="cards">
+
+                <!-- New Orders -->
+                <div class="card blue">
+                    <h1 id="totalOrders">0</h1>
+                    <p>New Orders</p>
+                    <div class="more">More Info</div>
+                </div>
+
+                <!-- Bounce Rate -->
+                <div class="card green">
+                    <h1 id="gstTotal">₹0</h1>
+                    <p>Total Amount + GST (18%)</p>
+                    <div class="more">More Info</div>
+                </div>
+
+                <!-- User Registration -->
+                <div class="card yellow">
+                    <h1 id="userCount">0</h1>
+                    <p>User Registrations</p>
+                    <div class="more">More Info</div>
+                </div>
+
+                <!-- Unique Visitors -->
+                <div class="card red">
+                    <h1 id="countryCount">0</h1>
+                    <p>Unique Countries</p>
+                    <div class="more">More Info</div>
+                </div>
+
+        </div>
+
+        <!-- Chart & Map -->
+        <div class="content">
+
+            <div class="chart">
+                <h2>Sales Value</h2>
+                <div class="chart-box">
+                    <img src="sales.png" alt="">
+                    Sales Chart Area
+                </div>
+            </div>
+
+            <div class="map">
+
+                <div class="map-box">
+                    <img src="worldmap.png" alt="">
+                    World Map Area
+                </div>
+            </div>
+            <div class="table-container">
+                <h2>Products Details</h2>
+            
+                <table border="1" cellspacing="0" cellpadding="10" id="productTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Product Name</th>
+                            <th>Cost (₹)</th>
+                            <th>GST 18% (₹)</th>
+                            <th>Total Cost (₹)</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody>
+            
+                    </tbody>
+            
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 
 
-        //make a student object with the keys.
-        //name
-        //age
-        //a nested address object with city and pin code
-        //a nested introduce() that prints "Hi", I am Ujjawal.
-        //then
-        //prints all the keys,
-        //print all the values,
-        //print all the entries,
-        //make a copy using object.assign(),
-        //freeze the original object,
-        //and try changing the original student's name to see what happens.
 
 
-
-     /*   let departments = [
+<script>
+    let departments = [
     { Dname: "IT", Dcode: 58 },
     { Dname: "Finance", Dcode: 158 },
     { Dname: "HR", Dcode: 48 },
     { Dname: "Marketing", Dcode: 44 },
     { Dname: "CEO", Dcode: 2 }
 ];
-
-// "rohan" -- "sandeep" "aakash"
 
 let employees = [
 {
@@ -456,367 +756,28 @@ let junior_employees = [
 }
 ];
 
-let student = {
-    name: "Ujjawal",
-    age: 19,
-
-    address: {
-        city: "Siwan",
-        pincode: 841413
-    },
-
-    introduce() {
-        console.log(`Hi, I am ${this.name}`);
-    }
-};
-
-// Calling the method
-student.introduce();
-
-
-// Print all keys
-console.log("Keys:");
-console.log(Object.keys(student));
-
-
-// Print all values
-console.log("Values:");
-console.log(Object.values(student));
-
-
-// Print all entries
-console.log("Entries:");
-console.log(Object.entries(student));
-
-
-// Make a copy using Object.assign()
-let studentCopy = Object.assign({}, student);
-
-console.log("Copied Object:");
-console.log(studentCopy);
-
-
-// Freeze the original object
-Object.freeze(student);
-
-
-// Try changing the original student's name
-student.name = "Anuj";
-
-console.log("Original Student after change attempt:");
-console.log(student);
-
-console.log("Copied Student:");
-console.log(studentCopy);
-
-
-let itEmployeeNames = employees
-    .filter(emp => emp.department === 58)
-    .map(emp => emp.name);
-
-
-console.log(itEmployeeNames);
-
-employees.forEach(emp => {
-    console.log(emp.name);
-
-
-    emp.junior_assigned.forEach(juniorId => {
-        let junior = junior_employees.find(j => j.employee_id === juniorId);
-
-
-        if (junior) {
-            console.log("  - " + junior.name);
-        }
-    });
-
-
-    console.log("------------------");
-});
-
-let allProducts = [];
-
-employees
-    .filter(emp => emp.department === 58)
-    .forEach(emp => {
-        emp.junior_assigned.forEach(juniorId => {
-            let junior = junior_employees.find(j => j.employee_id === juniorId);
-
-            if (junior) {
-                allProducts.push(...junior.products_in_cart);
-            }
-        });
-    });
-
-let mostExpensive = allProducts.reduce((max, product) => {
-    return product.cost > max.cost ? product : max;
-});
-
-console.log(mostExpensive);
-
-
-
-
-const giftResults = employees.flatMap((employee) => {
-    return (employee.junior_assigned || []).map((juniorId) => {
-        const junior = junior_employees.find((j) => j.employee_id === juniorId);
-
-        if (!junior) return null;
-
-        const cheapestGift = junior.products_in_cart.reduce((cheapest, gift) => {
-            return gift.cost < cheapest.cost ? gift : cheapest;
-        }, junior.products_in_cart[0]);
-
-        return {
-            "Employee Name": employee.name,
-            "Junior Name": junior.name,
-            "Cheapest Gift": cheapestGift.Pname,
-            "Can Give Gift": employee.salary >= cheapestGift.cost
-        };
-    });
-}).filter(Boolean);
-
-console.log(giftResults);
-
-
-
-employees.forEach(employee => {
-
-    employee.junior_assigned.forEach(id => {
-
-        junior_employees.forEach(junior => {
-
-            if (junior.employee_id == id) {
-
-                let minCost = junior.products_in_cart[0].cost;
-
-                junior.products_in_cart.forEach(product => {
-                    if (product.cost < minCost) {
-                        minCost = product.cost;
-                    }
-                });
-
-                if (employee.salary >= minCost) {
-                    console.log(employee.name + " can give gift to " + junior.name);
-                } else {
-                    console.log(employee.name + " cannot give gift to " + junior.name);
-                }
-            }
-
-        });
-
-    });
-
-});
-
-
-
-let categories = [];
-
-employees.concat(junior_employees).forEach(employee => {
-
-    employee.interests.forEach(interest => {
-
-        for (let key in interest) {
-
-            if (categories.includes(key) == false) {
-                categories.push(key);
-            }
-
-        }
-
-    });
-
-});
-
-console.log(categories);
-
-
-
-
-
-employees.forEach(employee => {
-
-    let employeeTotal = 0;
-
-    employee.interests.forEach(interest => {
-
-        let key = Object.keys(interest)[0];
-        employeeTotal += categories.indexOf(key) * 1;
-
-    });
-
-    console.log("Employee: " + employee.name + " -> " + employeeTotal + "%");
-
-    employee.junior_assigned.forEach(id => {
-
-        junior_employees.forEach(junior => {
-
-            if (junior.employee_id == id) {
-
-                let juniorTotal = 0;
-
-                junior.interests.forEach(interest => {
-
-                    let key = Object.keys(interest)[0];
-                    juniorTotal += categories.indexOf(key) * 1;
-
-                });
-
-                console.log("   Junior: " + junior.name + " -> " + juniorTotal + "%");
-
-            }
-
-        });
-
-    });
-
-});
-
-console.log("-------------------------------");
-
-
-employees.forEach(employee => {
-
-    employee.junior_assigned.forEach(id => {
-
-        junior_employees.forEach(junior => {
-
-            if (junior.employee_id == id) {
-
-                let donation = (employee.name + junior.name).length;
-
-                console.log(
-                    "Senior: " + employee.name +
-                    " | Junior: " + junior.name +
-                    " | Donation: " + donation
-                );
-
-            }
-
-        });
-
-    });
-
-});
-
-
-console.log("-----------------------");
-
-
-departments.forEach(department => {
-    let departmentEmployees = employees.filter(emp => emp.department === department.Dcode);
-
-    let products = departmentEmployees.flatMap(emp => emp.products_in_cart);
-
-    let productNames = products.map(product => product.Pname);
-
-    console.log("Department Name :", department.Dname);
-    console.log("Cart Items Count :", products.length);
-    console.log("Cart Items :", productNames);
-
-});
-
-console.log("---------------------------------")
-
-let ItProducts = [];
-
-employees.forEach((employee) => {
-
-    if (employee.department == 58) {
-
-        employee.products_in_cart.forEach((product) => {
-
-            let product_there = ItProducts.find(
-                prod => prod.Pname === product.Pname
-            );
-
-            if (product_there) {
-                product_there.count++;
-            } else {
-                ItProducts.push({
-                    Pname: product.Pname,
-                    count: 1
-                });
-            }
-
-        });
-
-    }
-
-});
-
-console.log(ItProducts);
-
-console.log("---------------------------------")
-
-
-
-let nestedArray = [
-["rohit", "mohit", "Harshit"],
-["Khushi","rushi", "sachi"],
-["tisha","isha","disha"]
-
-]
-
-
-for (let i = 0; i < nestedArray.length; i++) {
-    for (let j = 0; j < nestedArray[i].length; j++) {
-        console.log(nestedArray[i][j]);
-    }
-}
-
-for (let i = 0; i < nestedArray.length; i++) {
-    console.log(nestedArray[i][i]);
-}
-
-
-
-console.log(nestedArray[0])
-
-console.log(nestedArray[0][0])
-
-console.log("---------------------------------")
-
-
 const nested_employees = [
 
+
+
 [
-
     {
-
     employee_id: "EMP101",
-
     name: "Rahul",
-
     salary: 55000,
-
     age: 27,
-
     country: "India",
-
     department: 58,
-
     interests: [
-
         { technology: ["javascript", "nodejs"] },
-
         { sports: ["cricket"] },
-
         { music: ["guitar"] },
-
         { self_growth: ["productivity"] }
-
     ],
-
-    junior_assigned: ["JEMP201", "JEMP202", "JEMP203"],
-
-    products_in_cart: [
-
+        junior_assigned: ["JEMP201", "JEMP202", "JEMP203"],
+        products_in_cart: [
         { Pname: "Laptop", cost: 70000 },
-
         { Pname: "Keyboard", cost: 2500 },
-
         { Pname: "Headphones", cost: 4500 }
 
     ]
@@ -899,29 +860,29 @@ const nested_employees = [
 
         { Pname: "SSD", cost: 7000 }
 
-      ]
+    ]
 
     }
 
-  ],
+],
 
-  [
+[
 
     {
 
-      employee_id: "EMP104",
+    employee_id: "EMP104",
 
-      name: "Neha",
+    name: "Neha",
 
-      salary: 58000,
+    salary: 58000,
 
-      age: 28,
+    age: 28,
 
-      country: "India",
+    country: "India",
 
-      department: 48,
+    department: 48,
 
-      interests: [
+    interests: [
 
         { leadership: ["team_management"] },
 
@@ -931,11 +892,11 @@ const nested_employees = [
 
         { self_growth: ["public_speaking"] }
 
-      ],
+    ],
 
-      junior_assigned: ["JEMP207", "JEMP208"],
+    junior_assigned: ["JEMP207", "JEMP208"],
 
-      products_in_cart: [
+    products_in_cart: [
 
         { Pname: "iPad", cost: 55000 },
 
@@ -943,25 +904,25 @@ const nested_employees = [
 
         { Pname: "Bag", cost: 2500 }
 
-      ]
+    ]
 
     },
 
     {
 
-      employee_id: "EMP105",
+    employee_id: "EMP105",
 
-      name: "Riya",
+    name: "Riya",
 
-      salary: 52000,
+    salary: 52000,
 
-      age: 26,
+    age: 26,
 
-      country: "Australia",
+    country: "Australia",
 
-      department: 44,
+    department: 44,
 
-      interests: [
+    interests: [
 
         { photography: ["nature"] },
 
@@ -971,11 +932,11 @@ const nested_employees = [
 
         { travel: ["beaches"] }
 
-      ],
+    ],
 
-      junior_assigned: ["JEMP209", "JEMP210"],
+    junior_assigned: ["JEMP209", "JEMP210"],
 
-      products_in_cart: [
+    products_in_cart: [
 
         { Pname: "Camera", cost: 85000 },
 
@@ -983,25 +944,25 @@ const nested_employees = [
 
         { Pname: "Memory Card", cost: 2500 }
 
-      ]
+    ]
 
     },
 
     {
 
-      employee_id: "EMP106",
+    employee_id: "EMP106",
 
-      name: "Pooja",
+    name: "Pooja",
 
-      salary: 47000,
+    salary: 47000,
 
-      age: 24,
+    age: 24,
 
-      country: "India",
+    country: "India",
 
-      department: 158,
+    department: 158,
 
-      interests: [
+    interests: [
 
         { art: ["painting"] },
 
@@ -1011,9 +972,9 @@ const nested_employees = [
 
         { business: ["sales"] }
 
-      ],
+    ],
 
-      junior_assigned: ["JEMP211"],
+    junior_assigned: ["JEMP211"],
 
       products_in_cart: [
 
@@ -1135,11 +1096,11 @@ const nested_employees = [
 
         { travel: ["road_trips"] }
 
-      ],
+    ],
 
-      junior_assigned: ["JEMP216", "JEMP217", "JEMP218"],
+    junior_assigned: ["JEMP216", "JEMP217", "JEMP218"],
 
-      products_in_cart: [
+    products_in_cart: [
 
         { Pname: "Gaming Laptop", cost: 95000 },
 
@@ -1147,144 +1108,127 @@ const nested_employees = [
 
         { Pname: "Monitor", cost: 22000 }
 
-      ]
+    ]
 
     }
 
-  ]
+]
 
 ];
 
+//==============================
+// Dashboard Statistics
+//==============================
+
+let totalOrders = 0;
+let totalPrice = 0;
+
+// Employee Products
+employees.forEach(employee => {
+
+    totalOrders += employee.products_in_cart.length;
+
+    employee.products_in_cart.forEach(product => {
+        totalPrice += product.cost;
+    });
+
+});
+
+// Junior Employee Products
+junior_employees.forEach(junior => {
+
+    totalOrders += junior.products_in_cart.length;
+
+    junior.products_in_cart.forEach(product => {
+        totalPrice += product.cost;
+    });
+
+});
+
+// GST
+let gst = totalPrice * 18 / 100;
+let finalAmount = totalPrice + gst;
+
+// Total Users
+let totalUsers = employees.length + junior_employees.length;
+
+
+// Unique Countries
+
+let countries = new Set();
+
+employees.forEach(employee=>{
+    countries.add(employee.country);
+});
+
+junior_employees.forEach(junior=>{
+    countries.add(junior.country);
+});
+
+
+//==============================
+// Print Data on Dashboard
+//==============================
+
+document.getElementById("totalOrders").innerHTML = totalOrders;
+
+document.getElementById("gstTotal").innerHTML =
+"$" + finalAmount.toLocaleString("en-US");
+
+document.getElementById("userCount").innerHTML =
+totalUsers;
+
+document.getElementById("countryCount").innerHTML =
+countries.size;
 
 
 
+let tbody = document.querySelector("#productTable tbody");
+
+// Employees
+employees.forEach(employee => {
+
+    employee.products_in_cart.forEach(product => {
+
+        let gst = product.cost * 18 / 100;
+        let total = product.cost + gst;
+
+        tbody.innerHTML += `
+        <tr>
+            <td>${employee.name}</td>
+            <td>${product.Pname}</td>
+            <td>$${product.cost}</td>
+            <td>$${gst.toFixed(2)}</td>
+            <td>$${total.toFixed(2)}</td>
+        </tr>
+        `;
+    });
+
+});
+
+// Junior Employees
+junior_employees.forEach(junior => {
+
+    junior.products_in_cart.forEach(product => {
+
+        let gst = product.cost * 18 / 100;
+        let total = product.cost + gst;
+
+        tbody.innerHTML += `
+        <tr>
+            <td>${junior.name}</td>
+            <td>${product.Pname}</td>
+            <td>$${product.cost}</td>
+            <td>$${gst.toFixed(2)}</td>
+            <td>$${total.toFixed(2)}</td>
+        </tr>
+        `;
+    });
+
+});
 
 
+</script>
 
-/*let departments = [
-    { Dname: "IT", Dcode: 58 },
-    { Dname: "Finance", Dcode: 158 },
-    { Dname: "HR", Dcode: 48 },
-    { Dname: "Marketing", Dcode: 44 },
-    { Dname: "CEO", Dcode: 2 }
-];*/
-
-/*for (let i = 0; i < nested_employees.length; i++) {
-
-    for (let j = 0; j < nested_employees[i].length; j++) {
-
-        console.log(nested_employees[i][j].name);
-
-    }
-
-}
-
-console.log("----------------------------")
-
-
-for (let i = 0; i < nested_employees.length; i++) {
-
-    for (let j = 0; j < nested_employees[i].length; j++) {
-
-        let employee = nested_employees[i][j];
-
-        console.log("Employee:", employee.name);
-
-        employee.junior_assigned.forEach(juniorId => {
-
-            let junior = junior_employees.find(j => j.employee_id === juniorId);
-
-            if (junior) {
-                console.log("   Junior:", junior.name);
-            }
-
-        });
-
-        console.log("------------------------");
-    }
-
-}
-
-let person = {
-    name: "Ujjawal",
-    age: 19,
-    phone: 9523880263,
-    email: "g@gmail.com",
-    address: {
-        city: "Siwan",
-        pincode: 841413
-    },
-    key3 : undefined,
-    date: new Date(),
-    
-}
-
-let person_deep_copy = structuredClone(person);
-console.log(person)
-console.log(person_deep_copy)
-
-
-console.log(person.__proto__); 
-console.log(person.name);
-delete person.__proto__;*/
-
-/*class car {
-    constructor(name, model, company_name, release_year) {
-        this.name = name;
-        this.model = model;
-        this.company_name = company_name;
-        this.release_year = release_year;
-    }
-}
-
-let car_obj = new car("BMW", "X5", "BMW", 2022);
-let car_obj1 = new car("Audi", "A4", "Audi", 2021);
-let car_obj2 = new car("Mercedes", "C-Class", "Mercedes-Benz", 2020);
-console.log(car_obj,car_obj1,car_obj2);*/
-
-
-/*class student {
-    constructor(name, age, parents, mis_ID, hobbies) {
-        
-        this.name = name;
-        this.age = age;
-        this.parents = parents;
-        this.mis_ID = mis_ID;
-        this.hobbies = hobbies;
-    }
-}
-
-
-let student_obj = new student("Ujjawal", 19, {father: "Ramashankar Singh", mother: "   "}, "MIS12345", ["reading", "coding", "gaming"]);
-let student_obj1 = new student("Anuj", 20, {father: "Ramesh", mother: "Sita"}, "MIS54321", ["sports", "music"]);
-console.log(student_obj, student_obj1);*/
-
-
-class car {
-    constructor(carname){ 
-        
-        this.carname = carname;
-    }
-    startTheCar(){
-        console.log(this.carname + " is starting.....");
-        console.log("dhurrrr   dhurrrr  dhurrrrrr");
-        console.log(this.carname + " car started.....");
-    }
-}
-
-let car_obj = new car("BMW");
-car_obj.startTheCar();
-
-
-        //let obj = {
-        //    name: Ujjawal,
-        //    age: 19,
-
-       // }
-        //console.log(obj);
-
-
-
-    </Script>
 </body>
 </html>
