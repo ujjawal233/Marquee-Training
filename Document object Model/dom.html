@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM</title>
     <style>
-        .first {
+        /*.first {
             border: 1px solid black;
             background-color: red;
             color: white;
@@ -19,7 +19,7 @@
             padding: 10px;
             height: 50px;
             width: 100px;
-        }
+        }*/
 
 </style>
 </head>
@@ -28,18 +28,17 @@
 
 
 <h1>this  is changed</h1>
- // red min flash and blue min flash
 
-    <div class="first"> Red  </div>
+
+
+
+    <!--<div class="first"> Red  </div>
     <div class="second"> Blue </div>
 
         
-<img src="photo rehan.jpeg" alt="Image" width="200" height="200">
+<img src="../photo rehan.jpeg" alt="Image" width="200" height="200">
 
-
-<ul id="list">
-
-    </ul>
+<ul id="employeeList"></ul>-->
 
 
 
@@ -54,7 +53,7 @@
     <p class="paragraph"> The DOM represents the document as nodes and objects. That way, programming languages can connect to the page.</p>
     <p class="paragraph"> The Document Object Model (DOM) is a cross-platform and language-independent </p> -->
 
-    //<div class="Container">
+    <!--<div class="Container">
         <div class="Box1">  </div>
         <div class="Box2">  </div>
         <div class="Box3">  </div>
@@ -64,25 +63,81 @@
         <div class="Box7">  </div>
         <div class="Box8">  </div>
         <div class="Box9">  </div>
-    </div>
+    </div>-->
 
 
-    //using grid design create a box and inside that box create four boxes and give them different colors and also change the color of heading and paragraph using querySelectorAll.
+    <!-- using grid design create a box and inside that box create four boxes and give them different colors and also change the color of heading and paragraph using querySelectorAll. -->
+
+    <label>Password</label>
+
+<div style="display:flex;gap:8px;align-items:center;">
+<input id="pwd" type="password" placeholder="Enter password" />
+
+<button type="button" id="togglePwd" aria-label="Show/Hide password" style="cursor:pointer;">
+    👁️
+</button>
+</div>
     
     <script>
 
 
-        let img = document.querySelector("img")
-        setInterval(() => {
-            img.setAttribute('src','./Ujj.jpg')
-        }, 2000);
+        const pwd = document.getElementById("pwd");
+        const toggle = document.getElementById("togglePwd");
+
+        toggle.addEventListener("click", () => {
+            const isPassword = pwd.type === "password";
+            pwd.type = isPassword ? "text" : "password";
+        });
+
+
+
+        /*const gdiv = document.getElementById('gdiv');
+        let leftv = 20;
+        let topv = 20;
+        let rightv = 20;
+
+        document.addEventListener('keydown', (event) => {
+            
+
+            if (key === 'ArrowDown') {
+                topv += 10;
+            } else if (key === 'ArrowUp') {
+                topv -= 10;
+            } else if (key === 'ArrowLeft') {
+                leftv -= 10;
+            } else if (key === 'ArrowRight') {
+                leftv += 10;
+            } else {
+                return; 
+            }
+
+            gdiv.style.top = topv + 'px';
+            gdiv.style.left = leftv + 'px';
+        });*/
+
+
+
+
+
+
+        //document.addEventListener('cintextmenu',(event)=>{
+        //    event.preventDefault();
+        //    console.log('contentmenu chal gaya')
+        //});
+
+
+
+        //let img = document.querySelector("img")
+        //setInterval(() => {
+        //    img.setAttribute('src','../Ujj.jpg')
+        //}, 2000);
 
 
 
 
 
         
-let departments = [
+/*let departments = [
     { Dname: "IT", Dcode: 58 },
     { Dname: "Finance", Dcode: 158 },
     { Dname: "HR", Dcode: 48 },
@@ -859,13 +914,12 @@ const nested_employees = [
 
 
 
-let ul = document.querySelector("body");
-let listHTML = "<ul>";
-    employees.forEach((emp) => {
-        listHTML += `<li>${emp.name} - ${emp.salary} - ${emp.age}</li>`;
-    });
-    listHTML += "</ul>";
-    ul.innerHTML = listHTML;
+const employeeList = document.getElementById("employeeList");
+if (employeeList) {
+    employeeList.innerHTML = employees
+        .map((emp) => `<li>${emp.name} - ${emp.salary} - ${emp.age}</li>`)
+        .join('');
+}
 
 
 

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Post</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f2f2f2;
+            padding: 20px;
+        }
+
+        .screen{
+            border: 1px solid #ddd;
+            background: #fff;
+            height: 520px;
+            width: 320px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header (profile) */
+        .profile{
+            height: 60px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .circle{
+            border: 1px solid #ddd;
+            height: 42px;
+            width: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+        }
+
+        .name{
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* Post image area */
+        .Picture{
+            flex: 1;
+            width: 100%;
+            background:
+                radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45), transparent 35%),
+                linear-gradient(135deg, #0ea5e9, #6366f1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .Picture span{
+            background: rgba(0,0,0,0.35);
+            color: #fff;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            letter-spacing: 0.2px;
+        }
+
+        /* Footer / actions */
+        .rectangle{
+            width: 100%;
+            border-top: 1px solid #eee;
+            padding: 12px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn{
+            border: 1px solid #eee;
+            background: #fafafa;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            flex: 0 0 auto;
+        }
+
+        .btn:active{
+            transform: translateY(1px);
+        }
+
+        .like-btn.liked{
+            background: #ffe4e6;
+            border-color: #ff9aa4;
+            color: #e11d48;
+        }
+
+        .stats{
+            padding: 0 12px 12px;
+            font-size: 13px;
+            color: #111;
+        }
+
+        .stats .row{
+            margin-top: 6px;
+        }
+
+        .comment-area{
+            border-top: 1px solid #eee;
+            padding: 10px 12px;
+            display: none;
+        }
+
+        .comment-area input{
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            outline: none;
+        }
+
+        .comment-area .hint{
+            margin-top: 8px;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="screen">
+        <div class="profile">
+            <div class="circle" aria-hidden="true"></div>
+            <div class="name">Ujjawal Kumar</div>
+        </div>
+
+        <div class="Picture" role="img" aria-label="Post image placeholder">
+            <span>Post Image</span>
+        </div>
+
+        <div class="stats">
+            <div class="row"><strong id="likeCount">0</strong> likes</div>
+            <div class="row"> <strong id="commentCount">0</strong> comments</div>
+        </div>
+
+        <div class="rectangle">
+            <button id="LikeBtn" class="btn like-btn" type="button" aria-label="Like">
+                ❤️
+            </button>
+            <button id="CommentBtn" class="btn" type="button" aria-label="Comment">
+                💬
+            </button>
+            <button id="ShareBtn" class="btn" type="button" aria-label="Share">
+                ↗️
+            </button>
+        </div>
+
+        <!-- “Current comment” input should be the only thing visible by default -->
+        <div id="commentArea" class="comment-area" style="display:block;">
+            <input id="commentInput" type="text" placeholder="Write a comment..." />
+            <div class="hint">Press Enter to add comment.</div>
+        </div>
+
+
+        <!-- Only the “current comment” (input box) is visible by default.
+             Existing comments are hidden until user clicks 💬 -->
+        <div id="commentsList" class="comment-area">
+            <!-- Comments will appear here -->
+        </div>
+
+
+    </div>
+
+    <script>
+        const likeBtn = document.getElementById('LikeBtn');
+        const picture = document.querySelector('.Picture');
+
+        const likeCountEl = document.getElementById('likeCount');
+        const commentBtn = document.getElementById('CommentBtn');
+        const shareBtn = document.getElementById('ShareBtn');
+
+        const commentArea = document.getElementById('commentArea');
+        const commentInput = document.getElementById('commentInput');
+        const commentCountEl = document.getElementById('commentCount');
+
+        let likeCount = 0;
+        let commentCount = 0;
+
+        const commentsList = document.getElementById('commentsList');
+
+
+        function renderCounts(){
+            likeCountEl.textContent = likeCount;
+            commentCountEl.textContent = commentCount;
+        }
+
+        function doLike() {
+            likeCount += 1;
+            likeBtn.classList.add('liked');
+            renderCounts();
+        }
+
+        likeBtn.addEventListener('click', doLike);
+
+        // Image par double click / click se bhi like count increase ho
+        if (picture) {
+            picture.addEventListener('dblclick', (e) => {
+                e.preventDefault();
+                doLike();
+            });
+        }
+
+
+
+        commentBtn.addEventListener('click', () => {
+            // “Current comment” (input) always toggles, but when user clicks comment,
+            // show/hide all existing comments together.
+            const isCommentsVisible = commentsList.style.display === 'block';
+
+            // Toggle input area visibility (current comment)
+            commentArea.style.display = commentArea.style.display === 'none' ? 'block' : 'none';
+
+            if (commentArea.style.display === 'block') {
+                commentInput.focus();
+            }
+
+            // Toggle all comments visibility (rest hide/show)
+            commentsList.style.display = isCommentsVisible ? 'none' : 'block';
+        });
+
+
+        commentInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const text = commentInput.value.trim();
+                if (!text) return;
+
+                // Add comment to UI (typed text must show)
+                const commentEl = document.createElement('div');
+                commentEl.textContent = text;
+                commentEl.style.marginTop = '8px';
+                commentEl.style.fontSize = '13px';
+                commentEl.style.color = '#111';
+                commentEl.style.background = '#fafafa';
+                commentEl.style.border = '1px solid #eee';
+                commentEl.style.borderRadius = '10px';
+                commentEl.style.padding = '8px 10px';
+
+                commentsList.appendChild(commentEl);
+
+                commentCount += 1;
+                commentInput.value = '';
+
+                // Hide “current comment” input after adding.
+                // Comments list visibility is controlled by 💬 button.
+                commentArea.style.display = 'none';
+
+                renderCounts();
+            }
+        });
+
+
+        shareBtn.addEventListener('click', () => {
+            // No backend; simple demo
+            alert('Shared! (demo)');
+        });
+
+        // Requirement: Initially only “current comment” input is visible; hide all previous comments.
+        commentArea.style.display = 'block';
+        commentsList.style.display = 'none';
+
+        renderCounts();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listener </title>
+    <style>
+        .box{
+            border: 2px solid black;
+            height: 300px;
+            width: 300px;
+            background-color: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+            text-align: center;
+            border-radius: 50%;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            transition: all 0.2s ease;
+
+        }
+        button{
+            background-color: aliceblue;
+            height: 30px;
+            width: 80px;
+            margin: 10px;
+        }
+
+    </style>
+        
+</head>
+<body>
+    <div class="box"> count </div>
+    <button id="btn">Increase</button>
+    <button id="btn2">Decrease</button>
+    <button id="btn3">Reset</button>
+    <script>
+        let count = 0;
+        let btn = document.querySelector("#btn");
+        btn.onclick = function(){console.log("On click se chala")}
+        btn.addEventListener('click',()=>{
+            console.log("event listener se chala")
+        })
+        btn.addEventListener('mouseup',()=> {
+            console.log("button utha di")
+        })
+
+        document.addEventListener('mousemove', (event) => {
+            const x = event.clientX - 150;
+            const y = event.clientY - 150;
+            box.style.left = x + 'px';
+            box.style.top = y + 'px'; 
+        });
+        let btn2 = document.querySelector("#btn2");
+        let btn3 = document.querySelector("#btn3");
+        let box = document.querySelector(".box");
+
+        function updateCount() {
+            box.textContent = count;
+        }
+
+        btn.addEventListener("click", function(){
+            count++;
+            updateCount();
+        });
+
+        btn2.addEventListener("click", function(){
+            count--;
+            updateCount();
+        });
+
+        btn3.addEventListener("click", function(){
+            count = 0;
+            updateCount();
+        });
+
+        updateCount();
+    </script>
+
+    
+</body>
+</html>

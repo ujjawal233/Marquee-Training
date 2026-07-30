@@ -72,8 +72,9 @@ body{
 
 /* Main Content */
 .main{
-    flex:1;
-    padding:5px;
+    display:flex;
+    
+    align-items:flex-start;
 }
 
 .heading{
@@ -178,11 +179,23 @@ body{
     align-items:center;
     color:#aaa;
 }
+.table-section{
+    display:flex;
+    align-items:flex-start;
+    gap:20px;
+      left: -1200px;
+}
+
 .table-container{
-    margin-top:30px;
-    background:#2c313c;
-    padding:20px;
-    border-radius:10px;
+    width:900px;
+    left: -1200px;
+}
+
+.filter{
+    width:180px;
+}
+.output{
+    width:500px;
 }
 
 table{
@@ -209,6 +222,11 @@ tr:nth-child(even){
 
 <body>
 
+  
+
+<table border="1">
+    <tbody id="tableBody"></tbody>
+</table>
 <!-- Navbar -->
 <div class="navbar">
     <div class="nav-left">
@@ -310,27 +328,79 @@ tr:nth-child(even){
                     World Map Area
                 </div>
             </div>
+            <div class = "table-section">
             <div class="table-container">
+
                 <h2>Products Details</h2>
             
                 <table border="1" cellspacing="0" cellpadding="10" id="productTable">
-                    <thead>
-                        <tr>
+                   
+            
+                    <tbody>
+             <tr>
                             <th>Name</th>
                             <th>Product Name</th>
                             <th>Cost (₹)</th>
                             <th>GST 18% (₹)</th>
                             <th>Total Cost (₹)</th>
                         </tr>
-                    </thead>
-            
-                    <tbody>
-            
                     </tbody>
             
                 </table>
+          
             </div>
+            <div class="filter">
+                  <select id="select">
+    <option value="1000">Below 1000</option>
+    <option value="2000">Below 2000</option>
+    <option value="3000">Below 3000</option>
+    <option value="4000">Below 4000</option>
+    <option value="8000">Below 8000</option>
+    <option value="10000">Below 10000</option>
+</select>
+      <script>
+        function display(data){
 
+    tableBody.innerHTML = "";
+
+    data.forEach(employee => {
+
+        tableBody.innerHTML += `
+        <tr>
+           
+            <td>${employee.name}</td>
+            <td>${employee.salary}</td>
+        </tr>
+        `;
+
+    });
+   
+
+}
+      </script>
+            </div>
+           <div class="output">
+
+    <h2>Filtered Employees</h2>
+
+    <table border="1">
+
+        <thead>
+            <tr>
+               
+                <th>Name</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+
+        <tbody id="outputBody">
+
+        </tbody>
+
+    </table>
+
+            </div>
+            </div>
         </div>
 
     </div>
@@ -1020,7 +1090,7 @@ const nested_employees = [
 
       junior_assigned: ["JEMP212", "JEMP213"],
 
-      products_in_cart: [
+        products_in_cart: [
 
         { Pname: "MacBook", cost: 145000 },
 
@@ -1028,25 +1098,25 @@ const nested_employees = [
 
         { Pname: "USB Hub", cost: 2500 }
 
-      ]
+        ]
 
     },
 
     {
 
-      employee_id: "EMP108",
+        employee_id: "EMP108",
 
-      name: "Ajay",
+        name: "Ajay",
 
-      salary: 51000,
+        salary: 51000,
 
-      age: 29,
+        age: 29,
 
-      country: "India",
+        country: "India",
 
-      department: 58,
+        department: 58,
 
-      interests: [
+        interests: [
 
         { sports: ["football"] },
 
@@ -1056,11 +1126,11 @@ const nested_employees = [
 
         { movies: ["action"] }
 
-      ],
+        ],
 
-      junior_assigned: ["JEMP214", "JEMP215"],
+        junior_assigned: ["JEMP214", "JEMP215"],
 
-      products_in_cart: [
+        products_in_cart: [
 
         { Pname: "Smart Watch", cost: 15000 },
 
@@ -1226,6 +1296,31 @@ junior_employees.forEach(junior => {
     });
 
 });
+let select = document.querySelector("#select");
+let outputBody = document.querySelector("#outputBody");
+
+select.addEventListener("change", () => {
+
+    let filteredData = employees.filter(
+        employee => employee.salary < select.value
+    );
+
+    outputBody.innerHTML = "";
+
+    filteredData.forEach(employee => {
+
+        outputBody.innerHTML += `
+            <tr>
+            
+                <td>${employee.name}</td>
+                <td>${employee.salary}</td>
+            </tr>
+        `;
+
+    });
+
+});
+
 
 
 </script>

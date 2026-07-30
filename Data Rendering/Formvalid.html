@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+    padding:30px;
+}
+
+form{
+    width:380px;
+    margin:auto;
+    background:#fff;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+form p{
+    margin-top:10px;
+    font-weight:bold;
+}
+
+input[type=text],
+input[type=email],
+input[type=password],
+input[type=number]{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+}
+
+.checkbox{
+    margin-top:15px;
+}
+
+button[type=submit]{
+    width:100%;
+    margin-top:20px;
+    padding:10px;
+    background:#007bff;
+    color:white;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button[type=submit]:hover{
+    background:#0056b3;
+}
+
+h2{
+    text-align:center;
+    margin:30px 0;
+}
+
+#cardContainer{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:20px;
+}
+
+.card{
+    width:280px;
+    padding:20px;
+    border-radius:10px;
+    color:white;
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
+}
+
+.card-red{
+    background:#dc3545;
+}
+
+.card-green{
+    background:green;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    margin:8px 0;
+}
+
+.checkout-btn{
+    margin-top:15px;
+    padding:8px 15px;
+    border:none;
+    background:black;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+.checkout-btn:hover{
+    background:#333;
+}
+
+</style>
+</head>
+<body>
+
+<form id="userForm">
+
+<p>Enter Your Name</p>
+<input type="text" id="nameInput" required>
+
+<p>Enter Email</p>
+<input type="email" id="emailInput" required>
+
+<p>Password</p>
+<input type="password" id="passwordInput" required>
+
+<p>Enter Age</p>
+<input type="number" id="ageInput" required>
+
+<div class="checkbox">
+<label>
+<input type="checkbox" id="checkIn">
+Click Here
+</label>
+</div>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<h2>Submitted Details</h2>
+
+<div id="cardContainer"></div>
+
+<script>
+
+// DOM References
+
+let form = document.getElementById("userForm");
+
+let nameInput = document.getElementById("nameInput");
+let emailInput = document.getElementById("emailInput");
+let passwordInput = document.getElementById("passwordInput");
+let ageInput = document.getElementById("ageInput");
+let checkIn = document.getElementById("checkIn");
+
+let cardContainer = document.getElementById("cardContainer");
+
+let users = [];
+
+
+// Submit Form
+
+form.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    let user = {
+
+        name: nameInput.value,
+        email: emailInput.value,
+        password: passwordInput.value,
+        age: ageInput.value,
+        checked: checkIn.checked
+
+    };
+
+    users.push(user);
+
+    renderCards();
+
+    form.reset();
+
+});
+
+
+// Render Cards
+
+function renderCards(){
+
+    cardContainer.innerHTML = "";
+
+    users.forEach((user,index)=>{
+
+        let card = document.createElement("div");
+
+        card.className = user.checked
+        ? "card card-green"
+        : "card card-red";
+
+
+        card.innerHTML = `
+
+            <h3>${user.name}</h3>
+
+            <p><strong>Email :</strong> ${user.email}</p>
+
+            <p><strong>Password :</strong> ${user.password}</p>
+
+            <p><strong>Age :</strong> ${user.age}</p>
+
+        `;
+
+
+        // Only Green Card gets Checkout Button
+
+        if(user.checked){
+
+            let btn = document.createElement("button");
+
+            btn.innerText = "Check Out";
+
+            btn.className = "checkout-btn";
+
+            btn.addEventListener("click", function(){
+
+                users[index].checked = false;
+
+                renderCards();
+
+            });
+
+            card.appendChild(btn);
+
+        }
+
+        cardContainer.appendChild(card);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

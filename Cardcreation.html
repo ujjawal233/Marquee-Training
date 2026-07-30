@@ -103,11 +103,19 @@
             width: 40px;
             border: 1px solid black;
         }
-
-
-
-
-
+        .green{
+            background-color: green !important;
+        }
+        .red{
+            background-color: red !important;
+        }
+        .controls{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -135,8 +143,36 @@
                     <div class="like box"></div>
                     <div class="comment box"></div>
                     <div class="share box"></div>
+                </div>
+                <div class="controls">
+                    <label>
+                        <input type="checkbox" id="toggleGreen"> Check
+                    </label>
+                    <button id="checkoutBtn">Check out</button>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const container = document.querySelector('.container');
+        const checkbox = document.getElementById('toggleGreen');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                container.classList.add('green');
+                container.classList.remove('red');
+            } else {
+                container.classList.remove('green');
+            }
+        });
+
+        checkoutBtn.addEventListener('click', function() {
+            container.classList.add('red');
+            container.classList.remove('green');
+            checkbox.checked = false;
+        });
+    </script>
 </body>
 </html>
