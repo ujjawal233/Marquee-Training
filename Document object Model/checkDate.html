@@ -15,17 +15,33 @@
         padding:8px;
         margin:8px;
     }
+    .container{
+        display: flex;
+    }
 
     #result{
         margin-top:20px;
         border:1px solid gray;
         padding:10px;
+        margin: 10px;
         min-height:120px;
+        width: 500px;
+    }
+    #result1{
+        margin-top:20px;
+        border:1px solid gray;
+        padding:10px;
+        margin: 10px;
+        min-height:120px;
+        width: 500px;
     }
 </style>
 </head>
 
 <body>
+
+    <input type="file" name="" id="fileInput">
+    <br><br>
 
 <h3>Employee Joining Date</h3>
 
@@ -38,12 +54,19 @@
 </select>
 
 <button id="btn">Show Employees</button>
-
+<div class="container">
 <div id="result">
     Employee list will appear here...
 </div>
-
+<div id="result1"> Shorted list will appear here...</div>
+</div>
 <script>
+
+
+    let fileInput = document.querySelector('#fileInput');
+    fileInput.addEventListener('change',()=>{
+        console.log(fileInput.files[0])
+    })
 
 
     let employees = [
@@ -896,20 +919,77 @@
 
 }];
 
-let selectDate = new Date("Thu Jul 12 2018 11:45:00 GMT+0530 (India Standard Time)");
 let joiningDate = document.querySelector("#joining_date");
 let filterOption = document.querySelector("#filterOption");
 let button = document.querySelector("#btn");
 let result = document.querySelector("#result");
+let result1 = document.querySelector("#result1");
 
-button.addEventListener("click",()=>{
+function getDateKey(dateValue) {
+    let date = new Date(dateValue);
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1).padStart(2, "0");
+    let day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+}
 
-    console.log("Selected Date :", joining_date.value);
-    console.log("Filter :", filterOption.value);
+let employeesByDay = Array.from({ length: 31 }, () => []);
 
-    // Later you will give employee array.
-    // Here we will use filter() and display matching employees.
+employees.forEach((employee) => {
+    let day = new Date(employee.joining_date).getDate();
+    if (day >= 1 && day <= 31) {
+        employeesByDay[day - 1].push(employee);
+    }
+});
 
+
+
+console.log("Employees grouped by DD (31 arrays):", employeesByDay);
+
+button.addEventListener("click", () => {
+    let selectedDateValue = joiningDate.value;
+    let selectedFilter = filterOption.value;
+
+    if (!selectedDateValue) {
+        result.innerHTML = "<p>Please select a joining date.</p>";
+        return;
+    }
+
+    let selectedDate = new Date(`${selectedDateValue}T00:00:00`);
+    let selectedDateKey = getDateKey(selectedDate);
+    let selectedDay = selectedDate.getDate();
+
+    let sameDayEmployees = employeesByDay[selectedDay - 1] || [];
+    console.log(`Employees with DD ${selectedDay}:`, sameDayEmployees);
+
+    let filteredEmployees = employees.filter((employee) => {
+        let employeeDateKey = getDateKey(employee.joining_date);
+
+        if (selectedFilter === "less") {
+            return employeeDateKey < selectedDateKey;
+        } else if (selectedFilter === "greater") {
+            return employeeDateKey > selectedDateKey;
+        } else {
+            return employeeDateKey === selectedDateKey;
+        }
+    });
+
+    if (filteredEmployees.length === 0) {
+        result.innerHTML = "<p>No employees found for this filter.</p>";
+        return;
+    }
+
+    result.innerHTML = `
+        <p><strong>Same DD employees (${selectedDay}):</strong> ${sameDayEmployees.length}</p>
+        <ul>
+            ${filteredEmployees.map((employee) => `
+                <li>
+                    <strong>${employee.name}</strong> (${employee.employee_id})<br>
+                    Joining Date: ${new Date(employee.joining_date).toDateString()}
+                </li>
+            `).join("")}
+        </ul>
+    `;
 });
 
 </script>
