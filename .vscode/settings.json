@@ -1,5 +1,10 @@
 {
     "cSpell.words": [
-        "autoplay"
-    ]
+        "autoplay",
+        "Rehan",
+        "Ujjawal"
+    ],
+    "livePreview.defaultPreviewPath": "${workspaceFolder}/Document object Model/dom.html",
+    "workbench.settings.useSplitJSON": true,
+    "browser-preview.defaultBrowser": "chrome"
 }

@@ -1,0 +1,4 @@
+- [x] Update InstagramPostPage.html: Like button should increment likeCount on every click (no toggle)
+- [x] Update InstagramPostPage.html: Create commentsList container
+- [x] Update InstagramPostPage.html: On Enter, append typed comment text to commentsList and update commentCount
+- [ ] Quick manual test in browser: like multiple times + add multiple comments

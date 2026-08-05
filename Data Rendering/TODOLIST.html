@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Todo List</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#ececec;
+}
+
+.container{
+    width:500px;
+    margin:40px auto;
+    background:white;
+    border-radius:8px;
+    padding:20px;
+    box-shadow:0px 0px 10px gray;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.input-box{
+    display:flex;
+    gap:10px;
+}
+
+input{
+    flex:1;
+    padding:10px;
+    font-size:16px;
+}
+
+button{
+    cursor:pointer;
+}
+
+.add-btn{
+
+    padding:10px 18px;
+    background:green;
+    color:white;
+    border:none;
+    border-radius:5px;
+
+}
+
+.prepend-btn{
+
+    margin-top:10px;
+    padding:10px;
+    width:100%;
+    background:orange;
+    color:white;
+    border:none;
+    border-radius:5px;
+
+}
+
+.task-list{
+
+    margin-top:20px;
+
+}
+
+.task{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:#d8ebff;
+    margin-bottom:10px;
+    padding:10px;
+    border-radius:6px;
+
+}
+
+.task-text{
+
+    flex:1;
+    font-size:18px;
+
+}
+
+.controls{
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+}
+
+.move{
+
+    border:none;
+    background:#4caf50;
+    color:white;
+    width:30px;
+    height:30px;
+    border-radius:4px;
+
+}
+
+.menu-btn{
+
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    font-size:22px;
+    background:white;
+
+}
+
+.menu{
+
+    display:none;
+    position:absolute;
+    background:white;
+    border:1px solid gray;
+    border-radius:5px;
+    overflow:hidden;
+
+}
+
+.menu button{
+
+    display:block;
+    width:100%;
+    border:none;
+    background:white;
+    padding:8px 20px;
+    text-align:left;
+
+}
+
+.menu button:hover{
+
+    background:#ddd;
+
+}
+
+.first{
+
+    border-left:6px solid green;
+
+}
+
+.last{
+
+    border-right:6px solid red;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Simple Todo List</h1>
+
+    <div class="input-box">
+
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Enter Task">
+
+        <button
+            class="add-btn"
+            id="addBtn">
+            Add
+        </button>
+
+    </div>
+
+    <button
+        class="prepend-btn"
+        id="prependBtn">
+
+        Add Important Task
+
+    </button>
+
+    <div
+        class="task-list"
+        id="taskList">
+
+    </div>
+
+</div>
+
+<script >
+    // Select Elements
+let taskInput = document.querySelector("#taskInput");
+let addBtn = document.querySelector("#addBtn");
+let prependBtn = document.querySelector("#prependBtn");
+let taskList = document.querySelector("#taskList");
+
+
+// Create Task
+function createTask(taskName){
+
+    let task = document.createElement("div");
+    task.classList.add("task");
+
+
+    // Task Text
+    let text = document.createElement("span");
+    text.classList.add("task-text");
+    text.innerText = taskName;
+
+
+    // Controls
+    let controls = document.createElement("div");
+    controls.classList.add("controls");
+
+
+    // Up Button
+    let upBtn = document.createElement("button");
+    upBtn.classList.add("move");
+    upBtn.innerText = "↑";
+
+
+    // Down Button
+    let downBtn = document.createElement("button");
+    downBtn.classList.add("move");
+    downBtn.innerText = "↓";
+
+
+    // Three Dot Button
+    let menuBtn = document.createElement("button");
+    menuBtn.classList.add("menu-btn");
+    menuBtn.innerText = "⋮";
+
+
+    // Menu
+    let menu = document.createElement("div");
+    menu.classList.add("menu");
+
+
+    // Edit Button
+    let editBtn = document.createElement("button");
+    editBtn.innerText = "Edit";
+
+
+    // Delete Button
+    let deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "Delete";
+
+
+    menu.append(editBtn, deleteBtn);
+
+    controls.append(upBtn, downBtn, menuBtn);
+
+    task.append(text, controls, menu);
+
+
+    // -------------------------
+    // Show / Hide Menu
+    // -------------------------
+    menuBtn.onclick = function(){
+
+        if(menu.style.display=="block"){
+            menu.style.display="none";
+        }
+        else{
+            menu.style.display="block";
+        }
+
+    };
+
+
+    // -------------------------
+    // Delete
+    // -------------------------
+    deleteBtn.onclick = function(){
+
+        task.remove();
+
+        highlight();
+
+    };
+
+
+    // -------------------------
+    // Edit
+    // -------------------------
+    editBtn.onclick = function(){
+
+        let newTask = prompt("Update Task",text.innerText);
+
+        if(newTask!=null && newTask!=""){
+
+            text.innerText=newTask;
+
+        }
+
+        menu.style.display="none";
+
+    };
+
+
+    // -------------------------
+    // Move Up
+    // -------------------------
+    upBtn.onclick = function(){
+
+        let previous = task.previousElementSibling;
+
+        if(previous){
+
+            taskList.insertBefore(task,previous);
+
+        }
+
+        highlight();
+
+    };
+
+
+    // -------------------------
+    // Move Down
+    // -------------------------
+    downBtn.onclick = function(){
+
+        let next = task.nextElementSibling;
+
+        if(next){
+
+            taskList.insertBefore(next,task);
+
+        }
+
+        highlight();
+
+    };
+
+
+    return task;
+
+}
+
+
+
+// -------------------------
+// Append()
+// -------------------------
+addBtn.onclick=function(){
+
+    if(taskInput.value=="") return;
+
+    let task=createTask(taskInput.value);
+
+    taskList.append(task);
+
+    taskInput.value="";
+
+    highlight();
+
+};
+
+
+
+// -------------------------
+// Prepend()
+// -------------------------
+prependBtn.onclick=function(){
+
+    if(taskInput.value=="") return;
+
+    let task=createTask("⭐ "+taskInput.value);
+
+    taskList.prepend(task);
+
+    taskInput.value="";
+
+    highlight();
+
+};
+
+
+
+
+// -------------------------
+// Highlight First & Last
+// -------------------------
+function highlight(){
+
+    let divCollection = taskList.children;
+
+    // Remove Old Classes
+    for(let i=0;i<divCollection.length;i++){
+
+        divCollection[i].classList.remove("first");
+        divCollection[i].classList.remove("last");
+
+    }
+
+    if(divCollection.length>0){
+
+        taskList.firstElementChild.classList.add("first");
+
+        taskList.lastElementChild.classList.add("last");
+
+    }
+
+
+    // Console Examples
+
+    console.log(divCollection);
+
+    if(divCollection.length>0){
+
+        console.log("First Task :",taskList.firstElementChild);
+
+        console.log("Last Task :",taskList.lastElementChild);
+
+    }
+
+    if(divCollection.length>1){
+
+        console.log("Second Task :",divCollection[1]);
+
+    }
+
+}
+</script>
+
+</body>
+</html>

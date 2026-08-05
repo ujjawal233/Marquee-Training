@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <Script>
+        let employees = [
+    
+{
+        name: "rohan",
+        salary: 50,
+        age: 14,
+        country: "london",
+        department: "Finance",
+        content_liked: ["daily_vlogs", "science", "art", "motivational"],
+        products_in_cart: [
+            { Pname: "Shirt", cost: 500 },
+            { Pname: "Headphones", cost: 1800 }
+        ]
+    },
+{
+        name: "bhupendr",
+        salary: 70,
+        age: 50,
+        country: "india",
+        department: "IT",
+        content_liked: ["food", "Travel_Vlogs", "art", "storytelling"],
+        products_in_cart: [
+            { Pname: "Shirt", cost: 500 },
+            { Pname: "Shoes", cost: 2500 },
+            { Pname: "Watch", cost: 3500 }
+        ]
+    },
+
+    {
+        name: "kartik",
+        salary: 3,
+        age: 2,
+        country: "america",
+        department: "HR",
+        content_liked: ["sports", "politics", "online_gaming", "science"],
+        products_in_cart: [
+            { Pname: "Football", cost: 1200 },
+            { Pname: "Shoes", cost: 2500 }
+        ]
+    },
+    {
+        name: "suraj",
+        salary: 2,
+        age: 19,
+        country: "russia",
+        department: "Finance",
+        content_liked: ["Travel_Vlogs", "bike", "politics", "food"],
+        products_in_cart: [
+            { Pname: "Bike Helmet", cost: 2200 },
+            { Pname: "Watch", cost: 3500 }
+        ]
+    },
+    {
+        name: "aryan",
+        salary: 1,
+        age: 70,
+        country: "japan",
+        department: "HR",
+        content_liked: ["history", "motivational", "news", "science"],
+        products_in_cart: [
+            { Pname: "Books", cost: 900 },
+            { Pname: "Laptop", cost: 65000 }
+        ]
+    },
+    {
+        name: "aryan",
+        salary: 88,
+        age: 40,
+        country: "japan",
+        department: "IT",
+        content_liked: ["coding", "technology", "science", "art"],
+        products_in_cart: [
+            { Pname: "Laptop", cost: 65000 },
+            { Pname: "Mouse", cost: 700 },
+            { Pname: "Keyboard", cost: 1500 }
+        ]
+    },
+    {
+        name: "jatin",
+        salary: 100,
+        age: 12,
+        country: "russia",
+        department: "HR",
+        content_liked: ["gaming", "sports", "anime", "online_gaming"],
+        products_in_cart: [
+            { Pname: "Gaming Mouse", cost: 2200 },
+            { Pname: "Headphones", cost: 1800 }
+        ]
+    },
+    {
+        name: "aaditya",
+        salary: 20,
+        age: 19,
+        country: "india",
+        department: "Marketing",
+        content_liked: ["marketing", "business", "motivational", "storytelling"],
+        products_in_cart: [
+            { Pname: "Notebook", cost: 150 },
+            { Pname: "Pen", cost: 50 },
+            { Pname: "Shirt", cost: 500 }
+        ]
+    },
+    {
+        name: "sachi",
+        salary: 1,
+        age: 2,
+        country: "uganda",
+        department: "Finance",
+        content_liked: ["cartoons", "food", "science", "daily_vlogs"],
+        products_in_cart: [
+            { Pname: "Chocolate", cost: 100 },
+            { Pname: "Books", cost: 900 }
+        ]
+    },
+    {
+        name: "khushi",
+        salary: 35,
+        age: 99,
+        country: "brazil",
+        department: "IT",
+        content_liked: ["Travel_Vlogs", "dance", "food", "art"],
+        products_in_cart: [
+            { Pname: "Dress", cost: 1800 },
+            { Pname: "Watch", cost: 3500 },
+            { Pname: "Shoes", cost: 2500 }
+        ]
+    },
+    {
+        name: "parul",
+        salary: 500,
+        age: 34,
+        country: "jamaica",
+        department: "CEO",
+        content_liked: ["leadership", "business", "technology", "motivational"],
+        products_in_cart: [
+            { Pname: "Laptop", cost: 65000 },
+            { Pname: "Watch", cost: 3500 },
+            { Pname: "Phone", cost: 45000 }
+        ]
+    }
+];
+
+
+// find cart cost avg for every name. one by one.
+
+employees.forEach(employee => {
+    let totalCost = 0;
+    employee.products_in_cart.forEach(product => {
+        totalCost += product.cost
+    });
+
+
+    let avgCost = totalCost / employee.products_in_cart.length;
+console.log(`Average cost of products in cart for ${employee.name} is ${avgCost}
+
+    `)
+})
+
+// employee can purchase too expansive items purchase or not check it.
+
+
+
+
+// Give details find art like person.
+
+let artLovers = employees.filter(employee => employee.content_liked.includes("art"));
+console.log("Employees Who like art: ");
+artLovers.forEach(employee => {
+    console.log(employee.name);
+});
+
+
+
+//
+
+
+//console.log("Employees Who have both shirt and shoes in their cart: ");
+
+//
+
+
+let productList = [];
+employees.forEach((employee) => {
+    employee.products_in_cart.forEach((product,index) => {
+        let productValue = index * product.cost;
+        let productObj = {
+            employeeName: employee.name,
+            productName: product.Pname,
+            productValue: (index + 1) * product.cost
+        }
+        });
+
+    });
+
+
+
+
+
+    </Script>
+</body>
+</html>

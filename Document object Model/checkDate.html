@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Employee Joining Date Filter</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        padding:20px;
+    }
+
+    input,select,button{
+        padding:8px;
+        margin:8px;
+    }
+    .container{
+        display: flex;
+    }
+
+    #result{
+        margin-top:20px;
+        border:1px solid gray;
+        padding:10px;
+        margin: 10px;
+        min-height:120px;
+        width: 500px;
+    }
+    #result1{
+        margin-top:20px;
+        border:1px solid gray;
+        padding:10px;
+        margin: 10px;
+        min-height:120px;
+        width: 500px;
+    }
+</style>
+</head>
+
+<body>
+
+    <input type="file" name="" id="fileInput">
+    <br><br>
+
+<h3>Employee Joining Date</h3>
+
+<input type="date" id="joining_date">
+
+<select id="filterOption">
+    <option value="less">Joining Date Less Than</option>
+    <option value="greater">Joining Date Greater Than</option>
+    <option value="equal">Joining Date Equal To</option>
+</select>
+
+<button id="btn">Show Employees</button>
+<div class="container">
+<div id="result">
+    Employee list will appear here...
+</div>
+<div id="result1"> Shorted list will appear here...</div>
+</div>
+<script>
+
+
+    let fileInput = document.querySelector('#fileInput');
+    fileInput.addEventListener('change',()=>{
+        console.log(fileInput.files[0])
+    })
+
+
+    let employees = [
+
+{
+
+    employee_id: "EMP101",
+
+    name: "rohan",
+
+    salary: 5000,
+
+    age: 14,
+
+    country: "london",
+
+    department: 158,
+
+    joining_date: "Thu Mar 12 2015 09:15:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { vlogs: ["daily_vlogs"] },
+
+        { learning: ["science"] },
+
+        { creativity: ["art"] },
+
+        { self_growth: ["motivational"] }
+
+    ],
+
+    junior_assigned: ["JEMP201","JEMP202"],
+
+    products_in_cart: [
+
+        { Pname: "Shirt", cost: 500 },
+
+        { Pname: "Headphones", cost: 1800 }
+
+    ],
+
+    
+
+},
+
+{
+
+    employee_id: "EMP102",
+
+    name: "bhupendr",
+
+    salary: 7000,
+
+    age: 50,
+
+    country: "india",
+
+    department: 58,
+
+    joining_date: "Thu Jul 12 2018 11:45:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { food: ["food"] },
+
+        { vlogs: ["travel_vlogs"] },
+
+        { creativity: ["art"] },
+
+        { storytelling: ["storytelling"] }
+
+    ],
+
+    junior_assigned: ["JEMP203"],
+
+    products_in_cart: [
+
+        { Pname: "Shirt", cost: 500 },
+
+        { Pname: "Shoes", cost: 2500 },
+
+        { Pname: "Watch", cost: 3500 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP103",
+
+    name: "kartik",
+
+    salary: 300,
+
+    age: 2,
+
+    country: "america",
+
+    department: 48,
+
+    joining_date: "Wed Mar 25 2020 14:00:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { sports: ["sports"] },
+
+        { news: ["politics"] },
+
+        { gaming: ["online_gaming"] },
+
+        { learning: ["science"] }
+
+    ],
+
+    junior_assigned: ["JEMP204","JEMP205"],
+
+    products_in_cart: [
+
+        { Pname: "Football", cost: 1200 },
+
+        { Pname: "Shoes", cost: 2500 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP104",
+
+    name: "suraj",
+
+    salary: 200,
+
+    age: 19,
+
+    country: "russia",
+
+    department: 158,
+
+    joining_date: "Sun Nov 25 2018 08:30:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { vlogs: ["travel_vlogs"] },
+
+        { vehicles: ["bike"] },
+
+        { news: ["politics"] },
+
+        { food: ["food"] }
+
+    ],
+
+    junior_assigned: ["JEMP206"],
+
+    products_in_cart: [
+
+        { Pname: "Bike Helmet", cost: 2200 },
+
+        { Pname: "Watch", cost: 3500 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP105",
+
+    name: "aryan",
+
+    salary: 100,
+
+    age: 70,
+
+    country: "japan",
+
+    department: 48,
+
+    joining_date: "Tue Mar 08 2005 10:00:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { history: ["history"] },
+
+        { self_growth: ["motivational"] },
+
+        { news: ["news"] },
+
+        { learning: ["science"] }
+
+    ],
+
+    junior_assigned: ["JEMP207","JEMP208","JEMP209"],
+
+    products_in_cart: [
+
+        { Pname: "Books", cost: 900 },
+
+        { Pname: "Laptop", cost: 65000 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP106",
+
+    name: "aryan",
+
+    salary: 8800,
+
+    age: 40,
+
+    country: "japan",
+
+    department: 58,
+
+    joining_date: "Mon Sep 19 2005 16:20:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { coding: ["coding"] },
+
+        { technology: ["technology"] },
+
+        { learning: ["science"] },
+
+        { creativity: ["art"] }
+
+    ],
+
+    junior_assigned: ["JEMP210"],
+
+    products_in_cart: [
+
+        { Pname: "Laptop", cost: 65000 },
+
+        { Pname: "Mouse", cost: 700 },
+
+        { Pname: "Keyboard", cost: 1500 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP107",
+
+    name: "jatin",
+
+    salary: 10000,
+
+    age: 12,
+
+    country: "russia",
+
+    department: 48,
+
+    joining_date: "Tue Mar 08 2022 13:10:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { gaming: ["gaming","online_gaming"] },
+
+        { sports: ["sports"] },
+
+        { anime: ["anime"] }
+
+    ],
+
+    junior_assigned: ["JEMP211","JEMP212"],
+
+    products_in_cart: [
+
+        { Pname: "Gaming Mouse", cost: 2200 },
+
+        { Pname: "Headphones", cost: 1800 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP108",
+
+    name: "aaditya",
+
+    salary: 2000,
+
+    age: 19,
+
+    country: "india",
+
+    department: 44,
+
+    joining_date: "Sat Jun 30 2012 07:45:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { business: ["marketing","business"] },
+
+        { self_growth: ["motivational"] },
+
+        { storytelling: ["storytelling"] }
+
+    ],
+
+    junior_assigned: ["JEMP213"],
+
+    products_in_cart: [
+
+        { Pname: "Notebook", cost: 150 },
+
+        { Pname: "Pen", cost: 50 },
+
+        { Pname: "Shirt", cost: 500 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP109",
+
+    name: "sachi",
+
+    salary: 100,
+
+    age: 2,
+
+    country: "uganda",
+
+    department: 158,
+
+    joining_date: "Fri Jun 14 2019 12:00:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { fun: ["cartoons"] },
+
+        { food: ["food"] },
+
+        { learning: ["science"] },
+
+        { vlogs: ["daily_vlogs"] }
+
+    ],
+
+    junior_assigned: ["JEMP214"],
+
+    products_in_cart: [
+
+        { Pname: "Chocolate", cost: 100 },
+
+        { Pname: "Books", cost: 900 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP110",
+
+    name: "khushi",
+
+    salary: 3500,
+
+    age: 99,
+
+    country: "brazil",
+
+    department: 58,
+
+    joining_date: "Sat Dec 01 2001 15:30:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { vlogs: ["travel_vlogs"] },
+
+        { dance: ["dance"] },
+
+        { food: ["food"] },
+
+        { creativity: ["art"] }
+
+    ],
+
+    junior_assigned: ["JEMP215","JEMP216"],
+
+    products_in_cart: [
+
+        { Pname: "Dress", cost: 1800 },
+
+        { Pname: "Watch", cost: 3500 },
+
+        { Pname: "Shoes", cost: 2500 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP111",
+
+    name: "parul",
+
+    salary: 50000,
+
+    age: 34,
+
+    country: "jamaica",
+
+    department: 2,
+
+    joining_date: "Sun Dec 25 2016 09:00:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { leadership: ["leadership"] },
+
+        { business: ["business"] },
+
+        { technology: ["technology"] },
+
+        { self_growth: ["motivational"] }
+
+    ],
+
+    junior_assigned: ["JEMP217","JEMP218","JEMP219"],
+
+    products_in_cart: [
+
+        { Pname: "Laptop", cost: 65000 },
+
+        { Pname: "Watch", cost: 3500 },
+
+        { Pname: "Phone", cost: 45000 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP112",
+
+    name: "meera",
+
+    salary: 4200,
+
+    age: 25,
+
+    country: "canada",
+
+    department: 58,
+
+    joining_date: "Fri Mar 12 2010 10:30:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { fitness: ["yoga"] },
+
+        { food: ["food"] },
+
+        { creativity: ["art"] },
+
+        { vlogs: ["daily_vlogs"] }
+
+    ],
+
+    junior_assigned: ["JEMP220"],
+
+    products_in_cart: [
+
+        { Pname: "Yoga Mat", cost: 800 },
+
+        { Pname: "Water Bottle", cost: 300 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP113",
+
+    name: "devika",
+
+    salary: 15000,
+
+    age: 45,
+
+    country: "india",
+
+    department: 2,
+
+    joining_date: "Fri Aug 04 2023 11:00:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { leadership: ["leadership"] },
+
+        { business: ["marketing"] },
+
+        { technology: ["technology"] },
+
+        { learning: ["science"] }
+
+    ],
+
+    junior_assigned: ["JEMP221","JEMP222"],
+
+    products_in_cart: [
+
+        { Pname: "Laptop", cost: 65000 },
+
+        { Pname: "Phone", cost: 45000 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP114",
+
+    name: "farhan",
+
+    salary: 600,
+
+    age: 17,
+
+    country: "pakistan",
+
+    department: 48,
+
+    joining_date: "Fri Aug 19 2016 14:45:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { gaming: ["online_gaming"] },
+
+        { sports: ["sports"] },
+
+        { anime: ["anime"] },
+
+        { vlogs: ["daily_vlogs"] }
+
+    ],
+
+    junior_assigned: ["JEMP223"],
+
+    products_in_cart: [
+
+        { Pname: "Gaming Mouse", cost: 2200 },
+
+        { Pname: "Football", cost: 1200 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP115",
+
+    name: "olga",
+
+    salary: 9000,
+
+    age: 60,
+
+    country: "russia",
+
+    department: 158,
+
+    joining_date: "Sat Jan 01 2005 06:00:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { history: ["history"] },
+
+        { news: ["politics"] },
+
+        { food: ["food"] },
+
+        { storytelling: ["storytelling"] }
+
+    ],
+
+    junior_assigned: ["JEMP224","JEMP225"],
+
+    products_in_cart: [
+
+        { Pname: "Books", cost: 900 },
+
+        { Pname: "Watch", cost: 3500 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP116",
+
+    name: "wei",
+
+    salary: 3000,
+
+    age: 22,
+
+    country: "china",
+
+    department: 44,
+
+    joining_date: "Mon Nov 25 2019 09:45:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { coding: ["coding"] },
+
+        { gaming: ["gaming"] },
+
+        { technology: ["technology"] },
+
+        { learning: ["science"] }
+
+    ],
+
+    junior_assigned: ["JEMP226"],
+
+    products_in_cart: [
+
+        { Pname: "Keyboard", cost: 1500 },
+
+        { Pname: "Mouse", cost: 700 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP117",
+
+    name: "lucas",
+
+    salary: 12000,
+
+    age: 38,
+
+    country: "brazil",
+
+    department: 58,
+
+    joining_date: "Mon May 17 2021 13:30:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { dance: ["dance"] },
+
+        { food: ["food"] },
+
+        { creativity: ["art"] },
+
+        { vlogs: ["travel_vlogs"] }
+
+    ],
+
+    junior_assigned: ["JEMP227","JEMP228"],
+
+    products_in_cart: [
+
+        { Pname: "Shoes", cost: 2500 },
+
+        { Pname: "Dress", cost: 1800 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP118",
+
+    name: "amara",
+
+    salary: 500,
+
+    age: 8,
+
+    country: "nigeria",
+
+    department: 48,
+
+    joining_date: "Fri May 30 2014 08:00:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { fun: ["cartoons"] },
+
+        { learning: ["science"] },
+
+        { creativity: ["art"] },
+
+        { vlogs: ["daily_vlogs"] }
+
+    ],
+
+    junior_assigned: ["JEMP229"],
+
+    products_in_cart: [
+
+        { Pname: "Chocolate", cost: 100 },
+
+        { Pname: "Notebook", cost: 150 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP119",
+
+    name: "hiro",
+
+    salary: 20000,
+
+    age: 55,
+
+    country: "japan",
+
+    department: 2,
+
+    joining_date: "Wed Mar 25 2020 17:15:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { leadership: ["leadership"] },
+
+        { technology: ["technology"] },
+
+        { business: ["business"] },
+
+        { history: ["history"] }
+
+    ],
+
+    junior_assigned: ["JEMP230","JEMP231"],
+
+    products_in_cart: [
+
+        { Pname: "Laptop", cost: 65000 },
+
+        { Pname: "Watch", cost: 3500 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP120",
+
+    name: "elena",
+
+    salary: 750,
+
+    age: 16,
+
+    country: "spain",
+
+    department: 158,
+
+    joining_date: "Thu Oct 09 2003 12:30:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { dance: ["dance"] },
+
+        { vlogs: ["daily_vlogs"] },
+
+        { creativity: ["art"] },
+
+        { self_growth: ["motivational"] }
+
+    ],
+
+    junior_assigned: ["JEMP232"],
+
+    products_in_cart: [
+
+        { Pname: "Dress", cost: 1800 },
+
+        { Pname: "Pen", cost: 50 }
+
+    ]
+
+},
+
+{
+
+    employee_id: "EMP121",
+
+    name: "tariq",
+
+    salary: 6000,
+
+    age: 29,
+
+    country: "egypt",
+
+    department: 58,
+
+    joining_date: "Mon Jan 01 2024 10:00:00 GMT+0530 (India Standard Time)",
+
+    interests: [
+
+        { business: ["business"] },
+
+        { technology: ["technology"] },
+
+        { news: ["news"] },
+
+        { self_growth: ["motivational"] }
+
+    ],
+
+    junior_assigned: ["JEMP233","JEMP234"],
+
+    products_in_cart: [
+
+        { Pname: "Phone", cost: 45000 },
+
+        { Pname: "Watch", cost: 3500 }
+
+    ]
+
+}];
+
+let joiningDate = document.querySelector("#joining_date");
+let filterOption = document.querySelector("#filterOption");
+let button = document.querySelector("#btn");
+let result = document.querySelector("#result");
+let result1 = document.querySelector("#result1");
+
+function getDateKey(dateValue) {
+    let date = new Date(dateValue);
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1).padStart(2, "0");
+    let day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+}
+
+let employeesByDay = Array.from({ length: 31 }, () => []);
+
+employees.forEach((employee) => {
+    let day = new Date(employee.joining_date).getDate();
+    if (day >= 1 && day <= 31) {
+        employeesByDay[day - 1].push(employee);
+    }
+});
+
+
+
+console.log("Employees grouped by DD (31 arrays):", employeesByDay);
+
+button.addEventListener("click", () => {
+    let selectedDateValue = joiningDate.value;
+    let selectedFilter = filterOption.value;
+
+    if (!selectedDateValue) {
+        result.innerHTML = "<p>Please select a joining date.</p>";
+        return;
+    }
+
+    let selectedDate = new Date(`${selectedDateValue}T00:00:00`);
+    let selectedDateKey = getDateKey(selectedDate);
+    let selectedDay = selectedDate.getDate();
+
+    let sameDayEmployees = employeesByDay[selectedDay - 1] || [];
+    console.log(`Employees with DD ${selectedDay}:`, sameDayEmployees);
+
+    let filteredEmployees = employees.filter((employee) => {
+        let employeeDateKey = getDateKey(employee.joining_date);
+
+        if (selectedFilter === "less") {
+            return employeeDateKey < selectedDateKey;
+        } else if (selectedFilter === "greater") {
+            return employeeDateKey > selectedDateKey;
+        } else {
+            return employeeDateKey === selectedDateKey;
+        }
+    });
+
+    if (filteredEmployees.length === 0) {
+        result.innerHTML = "<p>No employees found for this filter.</p>";
+        return;
+    }
+
+    result.innerHTML = `
+        <p><strong>Same DD employees (${selectedDay}):</strong> ${sameDayEmployees.length}</p>
+        <ul>
+            ${filteredEmployees.map((employee) => `
+                <li>
+                    <strong>${employee.name}</strong> (${employee.employee_id})<br>
+                    Joining Date: ${new Date(employee.joining_date).toDateString()}
+                </li>
+            `).join("")}
+        </ul>
+    `;
+});
+
+</script>
+
+</body>
+</html>

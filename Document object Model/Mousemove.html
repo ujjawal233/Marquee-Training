@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Move</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .commonstyle {
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            position: absolute;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            border-radius: 4px;
+        }
+        .buttons {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .buttons button {
+            padding: 8px 12px;
+            border: 1px solid #333;
+            background-color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .buttons button.active {
+            background-color: var(--c);
+            color: #fff;
+        }
+
+        .color-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border: 1px solid #333;
+            background: #fff;
+        }
+        .color-wrap label {
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .color-buttons{
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .color-btn{
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid ;
+            cursor: pointer;
+            padding: 0;
+            background-color: var(--c);
+        }
+
+        .color-btn.active{
+            outline: 3px solid ;
+            outline-offset: 1px;
+        }
+
+        .trail {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="buttons">
+        <button id="penBtn" class="active">Pen</button>
+        <button id="eraseBtn">Erase</button>
+        <button id="clearBtn">Clear</button>
+
+        <div class="color-wrap">
+            <label>Color</label>
+            <div class="color-buttons" role="group" aria-label="Select color">
+                <button type="button" class="color-btn active" data-color="#ff0000" aria-label="Red" title="Red"></button>
+                <button type="button" class="color-btn" data-color="#0000ff" aria-label="Blue" title="Blue"></button>
+                <button type="button" class="color-btn" data-color="#008000" aria-label="Green" title="Green"></button>
+                <button type="button" class="color-btn" data-color="#ffff00" aria-label="Yellow" title="Yellow"></button>
+                <button type="button" class="color-btn" data-color="#ffa500" aria-label="Orange" title="Orange"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="commonstyle" id="toolCursor"></div>
+
+    <script>
+        const toolCursor = document.getElementById('toolCursor');
+        const penBtn = document.getElementById('penBtn');
+        const eraseBtn = document.getElementById('eraseBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const colorButtons = document.querySelectorAll('.color-btn');
+
+        let activeTool = 'pen';
+        let isDrawing = false;
+        let selectedColor = '#ff0000';
+
+        function setTool(tool) {
+            activeTool = tool;
+            penBtn.classList.toggle('active', tool === 'pen');
+            eraseBtn.classList.toggle('active', tool === 'erase');
+
+            // Cursor visuals
+            if (tool === 'erase') {
+                toolCursor.style.backgroundColor = '#fff';
+                toolCursor.style.border = '2px solid black';
+            } else {
+                toolCursor.style.backgroundColor = selectedColor;
+                toolCursor.style.border = 'none';
+            }
+        }
+
+        function addDot(x, y) {
+            const dot = document.createElement('div');
+            dot.classList.add('trail');
+            dot.style.left = x + 'px';
+            dot.style.top = y + 'px';
+            dot.style.backgroundColor = selectedColor;
+            document.body.appendChild(dot);
+        }
+
+
+        function eraseAt(x, y) {
+            document.querySelectorAll('.trail').forEach(dot => {
+                const dx = x - dot.offsetLeft;
+                const dy = y - dot.offsetTop;
+                if (Math.hypot(dx, dy) < 15) {
+                    dot.remove();
+                }
+            });
+        }
+
+        penBtn.addEventListener('click', () => setTool('pen'));
+        eraseBtn.addEventListener('click', () => setTool('erase'));
+        clearBtn.addEventListener('click', () => document.querySelectorAll('.trail').forEach(el => el.remove()));
+
+        colorButtons.forEach(btn => {
+            btn.style.setProperty('--c', btn.dataset.color);
+            btn.addEventListener('click', () => {
+                colorButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                selectedColor = btn.dataset.color;
+
+                // If user is currently using pen, update cursor color immediately
+                if (activeTool === 'pen') {
+                    toolCursor.style.backgroundColor = selectedColor;
+                }
+            });
+        });
+
+        document.addEventListener('mousedown', event => {
+            if (event.target.closest('.buttons')) return;
+            isDrawing = true;
+            if (activeTool === 'pen') {
+                addDot(event.clientX, event.clientY);
+            } else {
+                eraseAt(event.clientX, event.clientY);
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            isDrawing = false;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            isDrawing = false;
+        });
+
+        document.addEventListener('mousemove', event => {
+            toolCursor.style.left = event.clientX + 'px';
+            toolCursor.style.top = event.clientY + 'px';
+
+            if (!isDrawing) return;
+
+            if (activeTool === 'pen') {
+                addDot(event.clientX, event.clientY);
+            } else {
+                eraseAt(event.clientX, event.clientY);
+            }
+        });
+
+        // Initialize selected color from the active button (defaults to red)
+        const activeBtn = document.querySelector('.color-btn.active');
+        if (activeBtn) selectedColor = activeBtn.dataset.color;
+
+        setTool('pen');
+    </script>
+</body>
+</html>
+

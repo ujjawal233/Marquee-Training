@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Basics</title>
+</head>
+<body>
+    <script>
+        let employees = [
+            {name:"bhupendr",salary:70 , age:50, country : "india",department:"IT"},
+            {name:"rohan", salary:50, age:14, country: "london" , department:"Finance"},
+            {name: "kartik", salary:3, age:2, country : "america",department:"HR"},
+            {name:"suraj",salary:2, age : 19 , country:"russia",department:"Finance"},
+            {name:"aryan",salary:1,age:70 , country : "japan",department:"HR"},
+            {name:"aryan",salary:88,age:40 , country : "japan",department:"IT"},
+            {name: "jatin", salary:100, age:12, country:"russia",department:"HR"},
+            {name:"aaditya", salary:20, age : 19, country : "india",department:"Marketing"},
+            {name: "sachi", salary:1, age: 2 , country : "uganda",department:"Finance"},
+            {name: "khushi", salary : 35, age:99, country : "brazil",department:"IT"},
+            {name: "parul", salary:500, age:34, country: "zamaika", department:"CEO"}
+            
+        ]
+
+
+
+        
+
+
+
+        
+
+
+
+        /*let dept_codes = [{Ename: "", deptCode: 58},]
+
+        let oneFromEvryDept =[
+            {nameAndCountry: "pulkit india", salaryAndAge: "50 12", dept: ""}
+        ]
+        console.log(oneFromEvryDept);*/
+
+
+        
+
+
+        let departments = [
+        {Dname : "IT", Dcode: 53, employees : [{},{}]},
+        {Dname: "finance", Dcode: 158, employees : [{},{}]},
+        {Dname: "HR", Dcode: 48, employees: []},
+        {Dname: "Marketing", Dcode: 44, employees:[]},
+        {Dname: "CEO", Dcode: 2, employees:[]}
+
+        ]
+
+
+        let depCodes = employees.map((employee)=>{
+            let code ;
+
+            departments.find((dep)=>{
+                return
+            })
+        })
+
+        let HR = [{},{}]
+        let finance = []
+        let IT = []
+        let Marketing = []
+        let ceo = []
+
+        employees.forEach((employee)=>{
+            if(employee.department == "HR"  ){
+            departments.forEach((dept)=>{
+                if(dept.Dname==employee.department){
+                dept.employees.push(employee);
+                }
+            })
+            } else if(employee.department == "IT"  ){
+            departments.forEach((dept)=>{
+                if(dept.Dname==employee.department){
+                dept.employees.push(employee);
+                }
+            })
+            } else if(employee.department == "CEO"  ){
+            departments.forEach((dept)=>{
+                if(dept.Dname==employee.department){
+                dept.employees.push(employee);
+                }
+            })
+            } else if(employee.department == "Finance"  ){
+            departments.forEach((dept)=>{
+                if(dept.Dname==employee.department){
+                dept.employees.push(employee);
+                }
+            })
+            } else if(employee.department == "Marketing"  ){
+            departments.forEach((dept)=>{
+                if(dept.Dname==employee.department){
+                dept.employees.push(employee);
+                }
+            })
+            } 
+    
+        })
+    
+        console.log(departments)
+
+
+
+        let dpcodes = [
+        {name: "Ujjawal", Decode:58},{},
+        {name: "Anuj", Decode: 45},{},
+
+        ]
+
+
+
+
+
+
+        const employeeArray = employees.map(emp =>{
+            return emp.name;
+        })
+        console.log(employeeArray);
+
+        employees.forEach((employee) => {
+            if(employee.department == "HR" && employee.salary == 50){
+                console.log(`Name: ${employee.name}`);
+            }
+        });
+
+        let total_sum = 0;
+        employees.forEach((employee) => {
+            total_sum += employee.salary;
+        })
+        console.log(`Total Salary: ${total_sum}`);
+
+        let country_Salary = {};
+
+        employees.forEach((employee) => {
+            if (country_Salary[employee.country]) {
+                country_Salary[employee.country] += employee.salary;
+            } else {
+                country_Salary[employee.country] = employee.salary;
+            }
+        });
+
+        console.log(country_Salary);
+
+        employees.forEach((employee) =>{
+            if(employee.name[0] == 's'){
+                console.log(`${employee.name} belongs to ${employee.country}`);
+            }
+        });
+
+        let adult_count = {};
+
+        employees.forEach((employee) => {
+            if (employee.age > 18) {
+                if (adult_count[employee.department]) {
+                    adult_count[employee.department]++;
+                } else {
+                    adult_count[employee.department] = 1;
+                }
+            }
+        });
+        console.log(adult_count);
+    </script>
+</body>
+</html>

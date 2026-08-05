@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            font-family: sans-serif;
+        }
+        
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: auto auto auto;
+            gap: 8px;
+            width: 90%;
+            max-width: 900px;
+        }
+        
+        .block {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1.5px solid;
+        }
+          /* Block 1 — spans columns 1 to 3 (2/3 width), row 1 */
+        .block-1 {
+            grid-column: 1 / 2;
+            grid-row: 1;
+            background-color: #fff3e0;
+            border-color: #e67e22;
+            color: #7d4e08;
+        }
+        
+          /* Block 2 — spans rows 1 to 3 (tall column), col 2/3 */
+        .block-2 {
+            grid-column: 2 / 3;
+            grid-row: 1 / 3;
+            background-color: #e3f0fb;
+            border-color: #4fa3d8;
+            color: #0c447c;
+        }
+        
+          /* Block 3 — col 3, row 1 */
+        .block-3 {
+            grid-column: 3;
+            grid-row: 1;
+            background-color: #f5e6f8;
+            border-color: #9b59b6;
+            color: #5b1e7a;
+        }
+        
+          /* Block 4 — col 1 only, row 2 */
+        .block-4 {
+            grid-column: 1 / 2;
+            grid-row: 2;
+            background-color: #fde8ec;
+            border-color: #e74c3c;
+            color: #7b1a1a;
+        }
+        
+        .block-5 {
+            grid-column: 2 / 3;
+            grid-row: 3;
+            background-color: #e8f8f5;
+            border-color: #1abc9c;
+            color: #0e6251;
+            opacity: 0;
+        }
+        
+          /* Block 6 — full width (1 / -1), row 3 */
+        .block-6 {
+            grid-column: 1 / -1;
+            grid-row: 3;
+            background-color: #e6f6ec;
+            border-color: #27ae60;
+            color: #1a5e30;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="block block-1">Block 1</div>
+        <div class="block block-2">Block 2</div>
+        <div class="block block-3">Block 3</div>
+        <div class="block block-4">Block 4</div>
+        <div class="block block-5">Block 5</div>
+        <div class="block block-6">Block 6</div>
+    </div>
+</body>
+</html>

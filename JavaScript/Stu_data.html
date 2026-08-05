@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Drama</title>
+</head>
+<body>
+    <script>
+        let employees = [
+        {
+                name: "rohan",
+                salary: 5000,
+                age: 14,
+                country: "london",
+                department: "Finance",
+                content_liked: ["daily_vlogs", "science", "art", "motivational"],
+                products_in_cart: [
+                    { Pname: "Shirt", cost: 500 },
+                    { Pname: "Headphones", cost: 1800 }
+                ]
+            },
+        {
+                name: "bhupendr",
+                salary: 7000,
+                age: 50,
+                country: "india",
+                department: "IT",
+                content_liked: ["food", "Travel_Vlogs", "art", "storytelling"],
+                products_in_cart: [
+                    { Pname: "Shirt", cost: 500 },
+                    { Pname: "Shoes", cost: 2500 },
+                    { Pname: "Watch", cost: 3500 }
+                ]
+            },
+        
+            {
+                name: "kartik",
+                salary: 300,
+                age: 2,
+                country: "america",
+                department: "HR",
+                content_liked: ["sports", "politics", "online_gaming", "science"],
+                products_in_cart: [
+                    { Pname: "Football", cost: 1200 },
+                    { Pname: "Shoes", cost: 2500 }
+                ]
+            },
+            {
+                name: "suraj",
+                salary: 200,
+                age: 19,
+                country: "russia",
+                department: "Finance",
+                content_liked: ["Travel_Vlogs", "bike", "politics", "food"],
+                products_in_cart: [
+                    { Pname: "Bike Helmet", cost: 2200 },
+                    { Pname: "Watch", cost: 3500 }
+                ]
+            },
+            {
+                name: "aryan",
+                salary: 100,
+                age: 70,
+                country: "japan",
+                department: "HR",
+                content_liked: ["history", "motivational", "news", "science"],
+                products_in_cart: [
+                    { Pname: "Books", cost: 900 },
+                    { Pname: "Laptop", cost: 65000 }
+                ]
+            },
+            {
+                name: "aryan",
+                salary: 8800,
+                age: 40,
+                country: "japan",
+                department: "IT",
+                content_liked: ["coding", "technology", "science", "art"],
+                products_in_cart: [
+                    { Pname: "Laptop", cost: 65000 },
+                    { Pname: "Mouse", cost: 700 },
+                    { Pname: "Keyboard", cost: 1500 }
+                ]
+            },
+            {
+                name: "jatin",
+                salary: 10000,
+                age: 12,
+                country: "russia",
+                department: "HR",
+                content_liked: ["gaming", "sports", "anime", "online_gaming"],
+                products_in_cart: [
+                    { Pname: "Gaming Mouse", cost: 2200 },
+                    { Pname: "Headphones", cost: 1800 }
+                ]
+            },
+            {
+                name: "aaditya",
+                salary: 2000,
+                age: 19,
+                country: "india",
+                department: "Marketing",
+                content_liked: ["marketing", "business", "motivational", "storytelling"],
+                products_in_cart: [
+                    { Pname: "Notebook", cost: 150 },
+                    { Pname: "Pen", cost: 50 },
+                    { Pname: "Shirt", cost: 500 }
+                ]
+            },
+            {
+                name: "sachi",
+                salary: 100,
+                age: 2,
+                country: "uganda",
+                department: "Finance",
+                content_liked: ["cartoons", "food", "science", "daily_vlogs"],
+                products_in_cart: [
+                    { Pname: "Chocolate", cost: 100 },
+                    { Pname: "Books", cost: 900 }
+                ]
+            },
+            {
+                name: "khushi",
+                salary: 3500,
+                age: 99,
+                country: "brazil",
+                department: "IT",
+                content_liked: ["Travel_Vlogs", "dance", "food", "art"],
+                products_in_cart: [
+                    { Pname: "Dress", cost: 1800 },
+                    { Pname: "Watch", cost: 3500 },
+                    { Pname: "Shoes", cost: 2500 }
+                ]
+            },
+            {
+                name: "parul",
+                salary: 50000,
+                age: 34,
+                country: "jamaica",
+                department: "CEO",
+                content_liked: ["leadership", "business", "technology", "motivational"],
+                products_in_cart: [
+                    { Pname: "Laptop", cost: 65000 },
+                    { Pname: "Watch", cost: 3500 },
+                    { Pname: "Phone", cost: 45000 }
+                ]
+            }
+        ];
+
+        // QUESTION 1: FIND THE AVERAGE OF EACH EMPLOYEE'S PRODUCTS IN CART
+        let total_average_each_employee_cost = 0;
+        employees.forEach((employee) => {
+
+            let total_cost = 0;
+            employee.products_in_cart.forEach((product) => {
+                total_cost += product.cost;
+            });
+            
+            let average_cost = total_cost / employee.products_in_cart.length;
+            total_average_each_employee_cost += average_cost;
+            console.log(`${employee.name}: ${average_cost}`);
+        
+        });
+
+        // QUESTION 2: Can an employee buy the most expensive product in their cart with their salary?
+        employees.forEach((employee) => {
+            let max_cost = 0;
+            employee.products_in_cart.forEach((product) => {
+                if (product.cost > max_cost) {
+                    max_cost = product.cost;
+                }
+            });
+            if (employee.salary >= max_cost) {
+                console.log(`${employee.name} can buy the most expensive product in their cart.`);
+            } else {
+                console.log(`${employee.name} cannot buy the most expensive product in their cart.`);
+            }
+        });
+
+        // QUESTION 3: Find the name of the employees who like "art" content in an array of objects
+        let art_lovers = [];
+        employees.forEach((employee) => {
+            if (employee.content_liked.includes("art")) {
+                art_lovers.push({ name: employee.name });
+            }
+        });
+        console.log(art_lovers);
+
+        // QUESTION 4: Find the name of employees who has a shirt and shoes in their cart and the total cost of the shirts and shoes of all the employees who has a shirt or shoes or both in their cart
+        let shirt_shoes_owners = [];
+        let total_cost_shirt_shoes = 0;
+        employees.forEach((employee) => {
+            let has_shirt = false;
+            let has_shoes = false;
+            employee.products_in_cart.forEach((product) => {
+                if (product.Pname === "Shirt") {
+                    has_shirt = true;
+                    total_cost_shirt_shoes += product.cost;
+                }
+                if (product.Pname === "Shoes") {
+                    has_shoes = true;
+                    total_cost_shirt_shoes += product.cost;
+                }
+            });
+            if (has_shirt && has_shoes) {
+                shirt_shoes_owners.push({ name: employee.name });
+            }
+        });
+        console.log(shirt_shoes_owners);
+        console.log(`Total Cost: ${total_cost_shirt_shoes}`);
+
+        // QUESTION 5: CREATE A NEW ARRAY NAMED CONTENT_TYPES AND ADD ALL THE CONTENT TYPES OF ALL EMPLOYEES IN IT AND REMOVE THE DUPLICATES USING IF ELSE
+        let content_types = [];
+        employees.forEach((employee) => {
+            employee.content_liked.forEach((content) => {
+                if (!content_types.includes(content)) {
+                    content_types.push(content);
+                }
+            });
+        });
+        console.log(content_types);
+
+        // QUESTION 6: FOR ALL EMPLOYEES FIND THE PERCENTAGE OF EACH CONTENT TYPE LIKED BY EACH EMPLOYEE AND THE TOTAL SALARY USED ON EACH CONTENT TYPE USING THE INDEX AS THE PERCENTAGE NUMBER IN THE CONTENT TYPE ARRAY OF EACH CONTENT TYPE
+        let content_type_percentage = [];
+        employees.forEach((employee) => {
+            content_types.forEach((content, index) => {
+                if(employee.content_liked.includes(content)) {
+                    let percentage = (index / content_types.length) * 100;
+                    let value = (employee.salary * percentage) / 100;
+                    content_type_percentage.push({ employee: employee.name, content: content, percentage: percentage, value: value });
+                }
+            });
+        });
+        console.log(content_type_percentage);
+
+        // QUESTION 7: PRINT OUT ALL THE EMPLOYEES WHO ARE IN IT DEPARTMENT WHO ARE SPENDING THEIR MONEY ON PRODUCTS IN CART + EACH CONTENT TYPES MONEY
+        let it_department_spending = [];
+        let total_it_spent = 0;
+        employees.forEach((employee) => {
+            if (employee.department === "IT") {
+                let total_spent = 0;
+                employee.products_in_cart.forEach((product) => {
+                    total_spent += product.cost;
+                });
+                content_types.forEach((content, index) => {
+                    if(employee.content_liked.includes(content)) {
+                        let percentage = (index / content_types.length) * 100;
+                        let value = (employee.salary * percentage) / 100;
+                        total_spent += value;
+                    }
+                });
+                it_department_spending.push({ employee: employee.name, total_spent: total_spent });
+                total_it_spent += total_spent;
+            }
+        });
+        console.log(it_department_spending);
+        console.log(`Total Spent by IT Dept: ${total_it_spent}`);
+    </script>
+</body>
+</html>
