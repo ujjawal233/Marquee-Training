@@ -3,86 +3,304 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>youtube.com</title>
+    <title>YouTube.com</title>
     <style>
-        .container{
-            width: 100%;
-            height: 900px;
-            border: 2px solid red;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
         }
-        .sub_container1{
-            width: 98%;
-            height: 50px;
-            display: flex;
-            margin: 10px;
-            gap: 10px;
-            border: 1px solid black;
+
+        body {
+            background: #0f0f11;
+            color: #fff;
         }
-        .sub_container2{
-            width: 98%;
-            height: 50px;
+
+        .app {
             display: flex;
-            margin: 10px;
-            gap: 10px;
-            border: 1px solid black;
+            min-height: 100vh;
         }
-        .sub_container3{
-            width: 98%;
-            height: 300px;
-            display: flex;
-            margin: 10px;
-            gap: 10px;
-            border: 1px solid black;
+
+        .sidebar {
+            width: 240px;
+            background: #18181b;
+            padding: 20px 14px;
+            border-right: 1px solid #2a2a2e;
         }
-        .rectangle1{
-            width: 98%;
-            height: 250px;
+
+        .brand {
             display: flex;
-            margin: 10px;
-            border-radius: 20%;
+            align-items: center;
             gap: 10px;
-            border: 1px solid black;
+            margin-bottom: 24px;
         }
-        .sub_container4{
-            width: 98%;
-            height: 400px;
-            display: flex;
-            margin: 10px;
-            gap: 10px;
-            border: 1px solid black;
+
+        .logo {
+            width: 50px;
+            height: 35px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ff0000, #ff5c5c);
+            display: grid;
+            place-items: center;
+            font-size: 20px;
+            font-weight: bold;
         }
-        .rectangle2{
-            width: 98%;
-            height: 300px;
+
+        .brand h1 {
+            font-size: 1.2rem;
+        }
+
+        .nav-item {
             display: flex;
-            margin: 10px;
-            border-radius: 20%;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            margin-bottom: 6px;
+            color: #d7d7db;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .nav-item:hover,
+        .nav-item.active {
+            background: #27272a;
+            color: #fff;
+        }
+
+        .main {
+            flex: 1;
+            padding: 20px 24px 30px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .search-box {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: #27272a;
+            border-radius: 999px;
+            padding: 10px 14px;
+            max-width: 620px;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: white;
+            font-size: 0.95rem;
+        }
+
+        .topbar-icons {
+            display: flex;
+            align-items: center;
             gap: 10px;
-            border: 1px solid black;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: #27272a;
+            color: white;
+            cursor: pointer;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .chip {
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: #27272a;
+            color: #f4f4f5;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .chip.active {
+            background: #fff;
+            color: #111;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: #18181b;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .thumbnail {
+            height: 160px;
+            background: linear-gradient(135deg, #ff4d4d, #ff8c42, #ffc857);
+            position: relative;
+        }
+
+        .thumbnail::before {
+            content: "▶";
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            font-size: 2rem;
+            color: white;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .video-info {
+            padding: 12px 12px 16px;
+        }
+
+        .video-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .video-meta {
+            color: #b0b0b7;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar {
+                display: none;
+            }
+
+            .video-grid {
+                grid-template-columns: repeat(2, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .main {
+                padding: 16px;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .topbar-icons {
+                justify-content: flex-end;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="sub_container1">
-            
-        </div>
-        <div class="sub_container2"></div>
-        <div class="sub_container3">
-            <div class="rectangle1"></div>
-            <div class="rectangle1"></div>
-            <div class="rectangle1"></div>
-        </div>
-        <div class="sub_container4">
-            <div class="rectangle2"></div>
-            <div class="rectangle2"></div>
-            <div class="rectangle2"></div>
-            <div class="rectangle2"></div>
-            <div class="rectangle2"></div>
-            <div class="rectangle2"></div>
-            <div class="rectangle2"></div>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">▶</div>
+                <h1>YouTube</h1>
+            </div>
 
-        </div>
+            <div class="nav-item active">🏠 Home</div>
+            <div class="nav-item">📺 Shorts</div>
+            <div class="nav-item">📼 Subscriptions</div>
+            <div class="nav-item">🗂 Library</div>
+            <div class="nav-item">🕘 History</div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div class="search-box">
+                    <input type="text" placeholder="Search videos, music, live..." />
+                    <span>🔍</span>
+                </div>
+                <div class="topbar-icons">
+                    <button class="icon-btn">🔔</button>
+                    <button class="icon-btn">👤</button>
+                </div>
+            </header>
+
+            <div class="chips">
+                <div class="chip active">All</div>
+                <div class="chip">Music</div>
+                <div class="chip">Gaming</div>
+                <div class="chip">Live</div>
+                <div class="chip">News</div>
+                <div class="chip">Podcasts</div>
+                <div class="chip">Programming</div>
+            </div>
+
+            <section class="video-grid">
+                <article class="video-card">
+                    <div class="thumbnail"></div>
+                    <div class="video-info">
+                        <div class="video-title">Modern UI Design Concepts</div>
+                        <div class="video-meta">Creative Studio • 2.3M views</div>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <div class="thumbnail"></div>
+                    <div class="video-info">
+                        <div class="video-title">Weekend Vibes Playlist</div>
+                        <div class="video-meta">Music Box • 1.8M views</div>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <div class="thumbnail"></div>
+                    <div class="video-info">
+                        <div class="video-title">Build a Stunning Landing Page</div>
+                        <div class="video-meta">Code Studio • 845K views</div>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <div class="thumbnail"></div>
+                    <div class="video-info">
+                        <div class="video-title">Travel Through the Mountains</div>
+                        <div class="video-meta">Adventure TV • 712K views</div>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <div class="thumbnail"></div>
+                    <div class="video-info">
+                        <div class="video-title">Fast Tech Review 2026</div>
+                        <div class="video-meta">Tech Today • 1.1M views</div>
+                    </div>
+                </article>
+
+                <article class="video-card">
+                    <div class="thumbnail"></div>
+                    <div class="video-info">
+                        <div class="video-title">Minimal Interior Inspiration</div>
+                        <div class="video-meta">Home Style • 320K views</div>
+                    </div>
+                </article>
+            </section>
+        </main>
     </div>
 </body>
 </html>
