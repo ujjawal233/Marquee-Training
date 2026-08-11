@@ -302,5 +302,71 @@
             </section>
         </main>
     </div>
+
+    <script>
+        const searchInput = document.querySelector('.search-box input');
+        const chips = Array.from(document.querySelectorAll('.chip'));
+        const navItems = Array.from(document.querySelectorAll('.nav-item'));
+        const videoCards = Array.from(document.querySelectorAll('.video-card'));
+
+        const categoryMap = {
+            0: 'all',
+            1: 'music',
+            2: 'gaming',
+            3: 'live',
+            4: 'news',
+            5: 'podcasts',
+            6: 'programming'
+        };
+
+        videoCards.forEach((card, index) => {
+            card.dataset.category = categoryMap[index] || 'all';
+        });
+
+        let activeChip = 'all';
+
+        function filterVideos() {
+            const query = searchInput.value.trim().toLowerCase();
+            let visibleCount = 0;
+
+            videoCards.forEach((card) => {
+                const title = card.querySelector('.video-title').textContent.toLowerCase();
+                const meta = card.querySelector('.video-meta').textContent.toLowerCase();
+                const matchesCategory = activeChip === 'all' || card.dataset.category === activeChip;
+                const matchesQuery = !query || title.includes(query) || meta.includes(query);
+                const shouldShow = matchesCategory && matchesQuery;
+
+                card.style.display = shouldShow ? 'block' : 'none';
+                if (shouldShow) visibleCount++;
+            });
+
+            let emptyState = document.querySelector('.empty-state');
+            if (!emptyState) {
+                emptyState = document.createElement('div');
+                emptyState.className = 'empty-state';
+                emptyState.style.cssText = 'grid-column: 1 / -1; padding: 20px; text-align: center; color: #b0b0b7;';
+                document.querySelector('.video-grid').appendChild(emptyState);
+            }
+
+            emptyState.textContent = visibleCount === 0 ? 'No videos match your search.' : '';
+        }
+
+        chips.forEach((chip) => {
+            chip.addEventListener('click', () => {
+                chips.forEach((item) => item.classList.toggle('active', item === chip));
+                activeChip = chip.textContent.trim().toLowerCase();
+                filterVideos();
+            });
+        });
+
+        navItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                navItems.forEach((nav) => nav.classList.toggle('active', nav === item));
+            });
+        });
+
+        searchInput.addEventListener('input', filterVideos);
+        filterVideos();
+    </script>
 </body>
 </html>
