@@ -1,0 +1,118 @@
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 32px;
+            background: #f2f4f7;
+            color: #202124;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        body::before {
+            content: "Daily Health News";
+            display: block;
+            max-width: 1200px;
+            margin: 0 auto 32px;
+            padding-bottom: 18px;
+            border-bottom: 4px solid #b42318;
+            color: #b42318;
+            font-family: Arial, sans-serif;
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .news-card {
+            display: grid;
+            gap: 8px;
+            max-width: 1200px;
+            margin: 0 auto 22px;
+            padding: 24px;
+            background: #ffffff;
+            border: 1px solid #d9dee5;
+            border-left: 5px solid #b42318;
+            box-shadow: 0 4px 14px rgb(0 0 0 / 8%);
+        }
+
+        .news-card p {
+            margin: 0;
+        }
+
+        .news-card .source {
+            color: #b42318;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .news-card .author,
+        .news-card .published-at {
+            color: #6b7280;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+
+        .news-card .title {
+            margin: 4px 0;
+            color: #16181d;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.15;
+        }
+
+        .news-card .description {
+            color: #3f4650;
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        .news-card .content {
+            color: #555b63;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+
+        .news-card .url,
+        .news-card .url-to-image {
+            overflow-wrap: anywhere;
+            color: #777f89;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+
+        @media (min-width: 800px) {
+            body {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+            }
+
+            body::before {
+                grid-column: 1 / -1;
+                width: 100%;
+            }
+
+            .news-card {
+                margin: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 16px;
+            }
+
+            body::before {
+                font-size: 26px;
+            }
+
+            .news-card {
+                padding: 18px;
+            }
+
+            .news-card .title {
+                font-size: 22px;
+            }
+        }
