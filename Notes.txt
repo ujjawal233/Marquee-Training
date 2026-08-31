@@ -123,3 +123,9 @@ Password Show and Hide.
 type text and type password
 join
 
+Micro-taskQueue
+Promise-Settled
+promise-Resolved
+promise-Rejected
+promise-fulfilled
+
